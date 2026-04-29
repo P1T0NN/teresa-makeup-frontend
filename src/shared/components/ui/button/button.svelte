@@ -1,4 +1,8 @@
 <script lang="ts" module>
+	// SVELTEKIT IMPORTS
+	import { resolve } from '$app/paths';
+
+	// UTILS
 	import { cn, type WithElementRef } from "@/shared/utils/utils.js";
 	import type { HTMLAnchorAttributes, HTMLButtonAttributes } from "svelte/elements";
 	import { type VariantProps, tv } from "tailwind-variants";
@@ -42,8 +46,6 @@
 </script>
 
 <script lang="ts">
-	import { localizeHrefForUi } from '@/shared/utils/localizedPath';
-
 	let {
 		class: className,
 		variant = "default",
@@ -55,8 +57,6 @@
 		children,
 		...restProps
 	}: ButtonProps = $props();
-
-	const localizedHref = $derived.by(() => localizeHrefForUi(href));
 </script>
 
 {#if href}
@@ -64,7 +64,7 @@
 		bind:this={ref}
 		data-slot="button"
 		class={cn(buttonVariants({ variant, size }), className)}
-		href={disabled ? undefined : localizedHref}
+		href={disabled ? undefined : resolve(href as '/')}
 		aria-disabled={disabled}
 		role={disabled ? "link" : undefined}
 		tabindex={disabled ? -1 : undefined}
