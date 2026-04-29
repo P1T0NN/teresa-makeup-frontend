@@ -10,7 +10,6 @@
 
 	// SVGS
 	import UnitedKingdomFlag from '@/shared/svgs/united-kingdom-flag.svelte';
-	import GermanyFlag from '@/shared/svgs/germany-flag.svelte';
 	import SpainFlag from '@/shared/svgs/spain-flag.svelte';
 
 	// UTILS
@@ -22,9 +21,9 @@
 
 	let { variant = 'default' }: Props = $props();
 
+	/** Selectable locales only (`de` stays in Paraglide but is not offered here). */
 	const languages = [
 		{ name: 'English', locale: 'en' as const, code: 'EN' },
-		{ name: 'Deutsch', locale: 'de' as const, code: 'DE' },
 		{ name: 'Español', locale: 'es' as const, code: 'ES' }
 	] as const;
 
@@ -32,7 +31,8 @@
 
 	function localeFromRouter(): AppLocale {
 		const l = getLocale();
-		if (l === 'de' || l === 'es') return l;
+		if (l === 'es') return 'es';
+		// `de` (or unknown): show English in the control; URL may still be /de/ until user picks EN/ES.
 		return 'en';
 	}
 
@@ -60,8 +60,6 @@
 	>
 		{#if selectedLanguage === 'en'}
 			<UnitedKingdomFlag />
-		{:else if selectedLanguage === 'de'}
-			<GermanyFlag />
 		{:else}
 			<SpainFlag />
 		{/if}
@@ -77,13 +75,11 @@
 	</SelectTrigger>
 
 	<SelectContent>
-		{#each languages as language}
+		{#each languages as language (language.locale)}
 			<SelectItem value={language.locale}>
 				<div class="flex items-center space-x-3">
 					{#if language.locale === 'en'}
 						<UnitedKingdomFlag />
-					{:else if language.locale === 'de'}
-						<GermanyFlag />
 					{:else}
 						<SpainFlag />
 					{/if}
