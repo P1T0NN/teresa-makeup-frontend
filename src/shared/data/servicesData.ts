@@ -15,7 +15,6 @@ export const serviceOptions: { id: typesServiceOptionId; label: string }[] = [
 	{ id: 'social-makeup', label: 'Maquillaje social' },
 	{ id: 'facial-cleansing', label: 'Limpieza facial' },
 	{ id: 'maderotherapy', label: 'Maderoterapia' },
-	{ id: 'dermapen', label: 'Dermapen' },
 	{ id: 'lymphatic-drainage', label: 'Drenaje linfático' }
 ];
 
@@ -23,7 +22,7 @@ export const serviceOptions: { id: typesServiceOptionId; label: string }[] = [
 export const serviceOptionIds = serviceOptions.map((o) => o.id);
 
 /**
- * Marketing copy for `#services` — six rows aligned 1:1 with {@link serviceOptions}.
+ * Marketing copy for `#services` — rows aligned 1:1 with {@link serviceOptions}.
  */
 export const homepageServicesSection: readonly typesHomepageServiceSectionRow[] = [
 	{
@@ -55,15 +54,8 @@ export const homepageServicesSection: readonly typesHomepageServiceSectionRow[] 
 			'Wooden sculpting strokes to soften tension and support firmer contours on face or body — a soothing prelude to complexion work or bridal prep.'
 	},
 	{
-		id: 'dermapen',
-		ordinal: '05',
-		title: 'Dermapen',
-		description:
-			'Controlled microneedling to brighten tone, soften texture, and encourage collagen turnover — calibrated for smoother, luminous skin between events.'
-	},
-	{
 		id: 'lymphatic-drainage',
-		ordinal: '06',
+		ordinal: '05',
 		title: 'Lymphatic drainage',
 		description:
 			'Gentle drainage massage to minimise puffiness, refresh sluggish areas, and leave the face rested — ideal ahead of shoots, trials, or long travel.'

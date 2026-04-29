@@ -1,4 +1,8 @@
 <script lang="ts">
+	// SVELTEKIT
+	import { goto } from '$app/navigation';
+	import { resolve } from '$app/paths';
+
 	// LIBRARIES
 	import { safeParse } from 'valibot';
 
@@ -8,13 +12,13 @@
 	// COMPONENTS
 	import { Button } from '@/shared/components/ui/button/index.js';
 	import { toast } from 'svelte-sonner';
-    import Spinner from '@/shared/components/ui/spinner/spinner.svelte';
+	import Spinner from '@/shared/components/ui/spinner/spinner.svelte';
 
 	// REMOTE FUNCTIONS
 	import { createReservation } from '@/features/booking/mutations/createReservation.remote';
 	import { getAvailability } from '@/features/booking/queries/bookingQueries.remote';
 
-    // UTILS
+	// UTILS
 	import { valibotIssuesToFieldErrors } from '@/shared/utils/validationUtils';
 
 	// SCHEMAS
@@ -56,8 +60,9 @@
 			return;
 		}
 
-		toast.success(result.message);
 		bookingSectionClass.clearInputs();
+
+		await goto(resolve('/(unprotected)/reservation-confirmation'));
 	}
 </script>
 
@@ -67,9 +72,9 @@
 	disabled={submitting || !canSubmit}
 	onclick={handleConfirmReservation}
 >
-    {#if submitting}
-        <Spinner />
-    {/if}
+	{#if submitting}
+		<Spinner />
+	{/if}
 
-    Confirm Reservation
+	Confirm Reservation
 </Button>

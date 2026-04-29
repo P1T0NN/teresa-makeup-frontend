@@ -32,5 +32,6 @@ export const UNPROTECTED_PAGE_ENDPOINTS = {
 	/** Testimonials strip (`id="gallery"`). */
 	TESTIMONIALS: '/#gallery',
 	PORTFOLIO: '/#portfolio',
-	CONTACT: '/#contact'
+	CONTACT: '/#contact',
+	RESERVATION_CONFIRMATION: '/reservation-confirmation'
 } as const;

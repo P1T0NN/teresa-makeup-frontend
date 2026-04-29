@@ -18,8 +18,8 @@
 </svelte:head>
 
 <HeroSection />
-<ServicesSection />
 <BookingSection />
+<ServicesSection />
 <TestimonialsSection />
 <PortfolioSection />
 <AboutMeSection />

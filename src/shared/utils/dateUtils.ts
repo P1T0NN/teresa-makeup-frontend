@@ -1,8 +1,9 @@
+// LIBRARIES
+import { CalendarDate, getLocalTimeZone, type DateValue } from '@internationalized/date';
+import { getLocale } from '@/shared/lib/paraglide/runtime';
+
 // CONFIG
 import { COMPANY_DATA } from '@/shared/constants';
-
-// TYPES
-import type { DateValue } from '@internationalized/date';
 
 /**
  * UTC millisecond instant for the wall-clock `HH:mm` on `date` in IANA `timeZone`.
@@ -13,6 +14,23 @@ import type { DateValue } from '@internationalized/date';
 export function dateAtTimeMs(date: DateValue, time: string, timeZone: string): number {
 	const [h, m] = time.split(':').map(Number);
 	return date.toDate(timeZone).getTime() + h * 3_600_000 + m * 60_000;
+}
+
+/**
+ * Long calendar date for display (weekday, day, month) — uses the active UI locale from Paraglide
+ * (`getLocale()`) and `timeZone` for the `CalendarDate` → `Date` mapping (default: local device zone).
+ */
+export function formatCalendarDateLong(
+	date: { year: number; month: number; day: number },
+	timeZone: string = getLocalTimeZone()
+): string {
+	return new CalendarDate(date.year, date.month, date.day)
+		.toDate(timeZone)
+		.toLocaleDateString(getLocale(), {
+			weekday: 'long',
+			day: 'numeric',
+			month: 'long'
+		});
 }
 
 /** Wall-clock `yyyy-mm-ddTHH:mm:ss` in the salon IANA zone (`COMPANY_DATA.SALON_TIMEZONE`) for Google's `dateTime` + `timeZone`. */

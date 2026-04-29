@@ -2,7 +2,24 @@
 	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"example_message": "Hello world {username}",
 
+    "SEO": {
+        "ReservationConfirmationPage": {
+            "title": "Appointment Confirmed · Teresa Guzmán Makeup",
+            "description": "Your makeup appointment with Teresa Guzmán has been confirmed."
+        }
+    },
+
     "CreatedByOmnilabs": {
         "label": "Created by"
+    },
+
+    "ReservationConfirmationPage": {
+        "reservationConfirmed": "Reservation confirmed",
+        "youAreAllSet": "You're all set.",
+        "teresaWillBeInTouch": "Teresa will be in touch shortly with a confirmation. In the meantime — relax, you're in good hands.",
+        "backToSite": "Back to site",
+        "messageTeresa": "Message Teresa",
+        "whileYouWait": "while you wait",
+        "followTeresaForBridalInspiration": "Follow Teresa for bridal inspiration"
     }
 }

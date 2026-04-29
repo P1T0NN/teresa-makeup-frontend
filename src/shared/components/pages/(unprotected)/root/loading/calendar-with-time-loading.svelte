@@ -10,7 +10,7 @@
 -->
 <Card.Root class="h-full gap-0 p-0">
 	<Card.Content class="relative h-full p-0 md:pe-48">
-		<div class="p-6">
+		<div class="p-4 sm:p-6">
 			<!-- Month header -->
 			<div class="mb-4 flex items-center justify-between gap-4 px-1">
 				<Skeleton class="h-5 w-36 rounded-md bg-primary/20 sm:h-6" />

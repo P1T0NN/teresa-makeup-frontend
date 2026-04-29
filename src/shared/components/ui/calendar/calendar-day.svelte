@@ -12,7 +12,7 @@
 <CalendarPrimitive.Day
 	bind:ref
 	class={cn(
-		"flex h-(--cell-height,var(--cell-size)) w-(--cell-width,var(--cell-size)) flex-col items-center justify-center gap-1 rounded-(--cell-radius) p-0 leading-none font-normal whitespace-nowrap select-none",
+		"flex h-(--cell-height,var(--cell-size)) w-full flex-col items-center justify-center gap-1 rounded-(--cell-radius) p-0 leading-none font-normal whitespace-nowrap select-none",
 		"[&:last-child[data-selected=true]_button]:rounded-r-(--cell-radius)",
 		"not-data-selected:hover:bg-accent/50 not-data-selected:hover:text-accent-foreground",
 		"[&[data-today]:not([data-selected])]:bg-accent [&[data-today]:not([data-selected])]:text-accent-foreground [&[data-today][data-disabled]]:text-muted-foreground",

@@ -12,7 +12,7 @@
 <CalendarPrimitive.Cell
 	bind:ref
 	class={cn(
-		"relative h-(--cell-height,var(--cell-size)) w-(--cell-width,var(--cell-size)) p-0 text-center text-sm focus-within:z-20 [&:first-child[data-selected]_[data-bits-day]]:rounded-s-(--cell-radius) [&:last-child[data-selected]_[data-bits-day]]:rounded-e-(--cell-radius)",
+		"relative h-(--cell-height,var(--cell-size)) w-full p-0 text-center text-sm focus-within:z-20 [&:first-child[data-selected]_[data-bits-day]]:rounded-s-(--cell-radius) [&:last-child[data-selected]_[data-bits-day]]:rounded-e-(--cell-radius)",
 		className
 	)}
 	{...restProps}
