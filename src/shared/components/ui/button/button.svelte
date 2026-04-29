@@ -43,9 +43,6 @@
 </script>
 
 <script lang="ts">
-	// SVELTEKIT IMPORTS
-	import { resolve } from '$app/paths';
-
 	// LIBRARIES
 	import { localizeHref } from '@/shared/lib/paraglide/runtime';
 

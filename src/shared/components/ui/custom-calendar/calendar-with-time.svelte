@@ -134,11 +134,6 @@
 				</span>
 
 				<span class="inline-flex items-center gap-1.5">
-					<span class="inline-block h-4 w-4 rounded-sm bg-red-950/20 line-through decoration-red-900/60"></span>
-					Past
-				</span>
-
-				<span class="inline-flex items-center gap-1.5">
 					<span class="inline-block h-4 w-4 rounded-sm bg-primary"></span>
 					Selected
 				</span>

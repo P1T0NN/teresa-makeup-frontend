@@ -8,7 +8,7 @@ export const COMPANY_DATA = {
 	PHONE_HREF: 'tel:+34XXXXXXXXX',
 	INSTAGRAM: '@teresamakeup.es',
 	INSTAGRAM_URL: 'https://www.instagram.com/teresamakeup.es/',
-	WHATSAPP_NUMBER: '34XXXXXXXXX',
+	WHATSAPP_NUMBER: '+34692116800',
 	RESERVATION_TITLE: 'Makeup Appointment',
 	DOMAIN: 'teresamakeup.es',
 
