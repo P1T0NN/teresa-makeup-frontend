@@ -1,7 +1,4 @@
 <script lang="ts" module>
-	// SVELTEKIT IMPORTS
-	import { resolve } from '$app/paths';
-
 	// UTILS
 	import { cn, type WithElementRef } from "@/shared/utils/utils.js";
 	import type { HTMLAnchorAttributes, HTMLButtonAttributes } from "svelte/elements";
@@ -46,6 +43,12 @@
 </script>
 
 <script lang="ts">
+	// SVELTEKIT IMPORTS
+	import { resolve } from '$app/paths';
+
+	// LIBRARIES
+	import { localizeHref } from '@/shared/lib/paraglide/runtime';
+
 	let {
 		class: className,
 		variant = "default",
@@ -64,7 +67,7 @@
 		bind:this={ref}
 		data-slot="button"
 		class={cn(buttonVariants({ variant, size }), className)}
-		href={disabled ? undefined : resolve(href as '/')}
+		href={disabled ? undefined : localizeHref(href)}
 		aria-disabled={disabled}
 		role={disabled ? "link" : undefined}
 		tabindex={disabled ? -1 : undefined}

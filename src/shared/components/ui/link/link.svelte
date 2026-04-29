@@ -1,4 +1,7 @@
 <script lang="ts">
+	// SVELTEKIT IMPORTS
+	import { resolve } from '$app/paths';
+
 	// LIBRARIES
 	import { localizeHref } from '@/shared/lib/paraglide/runtime';
 
@@ -35,6 +38,6 @@
 	);
 </script>
 
-<a bind:this={ref} data-slot="link" href={localizedHref} class={cn(className)} {...restProps}>
+<a bind:this={ref} data-slot="link" href={resolve(localizedHref as '/')} class={cn(className)} {...restProps}>
 	{@render children()}
 </a>

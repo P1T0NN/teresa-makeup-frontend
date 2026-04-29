@@ -1,6 +1,7 @@
 <script lang="ts">
 	// LIBRARIES
 	import { m } from '@/shared/lib/paraglide/messages';
+	import { localizeHref } from '@/shared/lib/paraglide/runtime';
 	
 	// CONFIG
 	import { COMPANY_DATA, UNPROTECTED_PAGE_ENDPOINTS } from '@/shared/constants';
@@ -81,7 +82,7 @@
 		style="animation-delay: 550ms;"
 	>
 		<Button
-			href={UNPROTECTED_PAGE_ENDPOINTS.ROOT}
+			href={localizeHref(UNPROTECTED_PAGE_ENDPOINTS.ROOT)}
 			variant="ghost"
 			class="border border-primary-foreground/20 text-primary-foreground/75 hover:border-primary-foreground/35 hover:bg-primary-foreground/10 hover:text-primary-foreground"
 		>
