@@ -44,7 +44,7 @@
 	<Card.Content class="p-0 pt-3">
 		<FieldSet>
 			<FieldGroup class="gap-4">
-				<div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+				<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
 					<Field data-invalid={Boolean(bookingSectionClass.fieldErrors.name)}>
 						<FieldLabel for="booking-name">{m['RootPage.BookingSection.name']()}</FieldLabel>
 
@@ -94,37 +94,47 @@
 						</FieldContent>
 					</Field>
 
-					<Field data-invalid={Boolean(bookingSectionClass.fieldErrors.phone)}>
-						<FieldLabel
-							for="booking-phone"
-							class="inline-flex w-full min-w-0 flex-wrap items-baseline gap-x-1.5 gap-y-0"
-						>
-							<span>{m['RootPage.BookingSection.phone']()}</span>
+					<div class="md:col-span-2">
+						<Field data-invalid={Boolean(bookingSectionClass.fieldErrors.phone)}>
+							<FieldLabel
+								for="booking-phone"
+								class="inline-flex w-full min-w-0 flex-wrap items-baseline gap-x-1.5 gap-y-0"
+							>
+								<span>{m['RootPage.BookingSection.phone']()}</span>
 
-							<span class="font-normal text-muted-foreground">({m['RootPage.BookingSection.optional']()})</span>
-						</FieldLabel>
+								<span class="font-normal text-muted-foreground">({m['RootPage.BookingSection.optional']()})</span>
+							</FieldLabel>
 
-						<FieldContent>
-							<Input
-								id="booking-phone"
-								bind:value={bookingSectionClass.bookingInputs.phone}
-								type="tel"
-								name="phone"
-								autocomplete="tel"
-								placeholder="+34 …"
-								aria-invalid={Boolean(bookingSectionClass.fieldErrors.phone)}
-								oninput={() =>
-									(bookingSectionClass.fieldErrors = clearValibotFieldError(
-										bookingSectionClass.fieldErrors,
-										'phone'
-									))}
-							/>
+							<FieldContent>
+								<Input
+									id="booking-phone"
+									bind:value={bookingSectionClass.bookingInputs.phone}
+									type="tel"
+									name="phone"
+									autocomplete="tel"
+									placeholder="+34 …"
+									aria-describedby="booking-phone-hint"
+									aria-invalid={Boolean(bookingSectionClass.fieldErrors.phone)}
+									oninput={() =>
+										(bookingSectionClass.fieldErrors = clearValibotFieldError(
+											bookingSectionClass.fieldErrors,
+											'phone'
+										))}
+								/>
 
-							{#if bookingSectionClass.fieldErrors.phone}
-								<FieldError>{bookingSectionClass.fieldErrors.phone}</FieldError>
-							{/if}
-						</FieldContent>
-					</Field>
+								<p
+									id="booking-phone-hint"
+									class="mt-1.5 max-w-2xl text-xs leading-snug text-muted-foreground"
+								>
+									{m['RootPage.BookingSection.phoneDescription']()}
+								</p>
+
+								{#if bookingSectionClass.fieldErrors.phone}
+									<FieldError>{bookingSectionClass.fieldErrors.phone}</FieldError>
+								{/if}
+							</FieldContent>
+						</Field>
+					</div>
 				</div>
 			</FieldGroup>
 		</FieldSet>

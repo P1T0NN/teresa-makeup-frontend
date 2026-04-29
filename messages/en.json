@@ -35,6 +35,7 @@
             "yourEmail": "you@example.com",
             "phone": "Phone",
             "optional": "Optional",
+            "phoneDescription": "Recommended but not required — it makes it easier for Teresa to contact you if you need to change or cancel your appointment. If you add a number, use international format (+country code); a WhatsApp number is preferred if you use WhatsApp.",
             "confirmReservation": "Confirm Reservation"
         },
         "ContactSection": {

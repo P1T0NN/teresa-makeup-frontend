@@ -4,5 +4,11 @@
 
 	"CreatedByOmnilabs": {
 		"label": "Creado por"
+	},
+
+	"RootPage": {
+		"BookingSection": {
+			"phoneDescription": "Recomendado, no obligatorio: facilita que Teresa pueda contactarte si necesitas cambiar o cancelar la cita. Si añades un número, usa formato internacional (+prefijo); preferiblemente un número con WhatsApp si lo usas."
+		}
 	}
 }

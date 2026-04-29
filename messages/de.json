@@ -1,4 +1,10 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
-  "example_message": "Guten Tag {username}"
+  "example_message": "Guten Tag {username}",
+
+  "RootPage": {
+    "BookingSection": {
+      "phoneDescription": "Empfohlen, aber freiwillig — so kann Teresa Sie bei Änderungen oder Absagen schneller erreichen. Bitte mit Ländervorwahl (+…) und möglichst einer Nummer, die Sie für WhatsApp nutzen."
+    }
+  }
 }
