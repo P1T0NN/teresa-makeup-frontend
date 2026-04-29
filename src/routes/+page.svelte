@@ -6,6 +6,7 @@
 	import PortfolioSection from '@/shared/components/pages/(unprotected)/root/portfolio-section.svelte';
 	import WhatsAppFab from '@/shared/components/pages/(unprotected)/root/whatsapp-fab.svelte';
 	import AboutMeSection from '@/shared/components/pages/(unprotected)/root/about-me-section.svelte';
+	import ContactSection from '@/shared/components/pages/(unprotected)/root/contact-section/contact-section.svelte';
 </script>
 
 <svelte:head>
@@ -22,6 +23,7 @@
 <TestimonialsSection />
 <PortfolioSection />
 <AboutMeSection />
+<ContactSection />
 
 <!-- WhatsApp floating button — mobile only -->
 <WhatsAppFab />

@@ -1,31 +1,36 @@
 export const COMPANY_DATA = {
 	NAME: 'Teresa Guzmán Makeup',
 	LOGO: '/logo/logo.webp',
-	DESCRIPTION:
-		'Professional makeup artist specializing in bridal and social makeup in Valencia.',
-	// TODO: confirm real email with Teresa
+	DESCRIPTION: 'Professional makeup artist specializing in bridal and social makeup in Valencia.',
 	EMAIL: 'hola@teresamakeup.es',
 	EMAIL_HREF: 'mailto:hola@teresamakeup.es',
-	// TODO: confirm real phone number with Teresa
 	PHONE_DISPLAY: '+34 XXX XXX XXX',
 	PHONE_HREF: 'tel:+34XXXXXXXXX',
-	INSTAGRAM: '@teresamakeup',
-	INSTAGRAM_URL: 'https://instagram.com/teresamakeup',
-	// TODO: confirm WhatsApp number with Teresa (used for wa.me booking link)
+	INSTAGRAM: '@teresamakeup.es',
+	INSTAGRAM_URL: 'https://www.instagram.com/teresamakeup.es/',
 	WHATSAPP_NUMBER: '34XXXXXXXXX',
-} as const;
+	RESERVATION_TITLE: 'Makeup Appointment',
+	DOMAIN: 'teresamakeup.es',
 
-export const PROTECTED_PAGE_ENDPOINTS = {
-	HOME: '/',
-} as const;
-
-export const UNPROTECTED_PAGE_ENDPOINTS = {
-	ROOT: '/',
+	/**
+	 * IANA timezone of the salon. Google Calendar events are reinterpreted in this
+	 * zone when computing busy intervals — so an event the owner creates at "4pm"
+	 * always blocks 4pm at the salon, regardless of the owner's device timezone.
+	 */
+	SALON_TIMEZONE: 'Europe/Madrid'
 } as const;
 
 /**
- * IANA timezone of the salon. Google Calendar events are reinterpreted in this
- * zone when computing busy intervals — so an event the owner creates at "4pm"
- * always blocks 4pm at the salon, regardless of the owner's device timezone.
+ * Paths for the landing page (anchors on `/`). Use these for `<Button href>` / `<a href>`
+ * instead of hardcoding `/#section`.
  */
-export const SALON_TIMEZONE = 'Europe/Madrid';
+export const UNPROTECTED_PAGE_ENDPOINTS = {
+	ROOT: '/',
+	BOOKING: '/#booking',
+	SERVICES: '/#services',
+	ABOUT_ME: '/#about',
+	/** Testimonials strip (`id="gallery"`). */
+	TESTIMONIALS: '/#gallery',
+	PORTFOLIO: '/#portfolio',
+	CONTACT: '/#contact'
+} as const;

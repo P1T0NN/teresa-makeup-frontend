@@ -1,4 +1,4 @@
-/** Paths that must stay global (no /en/ or /de/ prefix). */
+/** Paths that must stay global (no locale prefix). */
 export function shouldSkipLocalePrefix(href: string): boolean {
 	return (
 		href.startsWith('/api') ||

@@ -1,11 +1,13 @@
 <script lang="ts">
 	// CONFIG
-	import { COMPANY_DATA } from '@/shared/constants.js';
+	import { COMPANY_DATA, UNPROTECTED_PAGE_ENDPOINTS } from '@/shared/constants.js';
 
 	// CLASSES
 	import { footerLinkClass } from './footer.svelte.ts';
 
 	// COMPONENTS
+	import CreatedByOmnilabs from '@/shared/components/ui/created-by-omnilabs/created-by-omnilabs.svelte';
+	import Instagram from '@/shared/components/ui/instagram/instagram.svelte';
 	import Logo from '@/shared/components/ui/logo/logo.svelte';
 
 	// UTILS
@@ -29,10 +31,12 @@
 		<div class="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
 			<!-- Brand -->
 			<div class="flex flex-col gap-3">
-				<Logo href="/" imgClass="brightness-0 invert" />
+				<Logo href={UNPROTECTED_PAGE_ENDPOINTS.ROOT} />
 				<p class="max-w-xs text-sm leading-relaxed text-primary-foreground/70">
 					{COMPANY_DATA.DESCRIPTION}
 				</p>
+
+				<Instagram class="-ml-0.5" />
 			</div>
 
 			<!-- Contact links -->
@@ -40,31 +44,30 @@
 				<p class="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-primary-foreground/50">
 					Contact
 				</p>
+				
 				<a
 					href={COMPANY_DATA.EMAIL_HREF}
+					rel="external"
 					class={cn(footerLinkClass, 'text-primary-foreground/80 hover:text-primary-foreground')}
 				>
 					{COMPANY_DATA.EMAIL}
 				</a>
+
 				<a
 					href={COMPANY_DATA.PHONE_HREF}
+					rel="external"
 					class={cn(footerLinkClass, 'text-primary-foreground/80 hover:text-primary-foreground')}
 				>
 					{COMPANY_DATA.PHONE_DISPLAY}
 				</a>
-				<a
-					href={COMPANY_DATA.INSTAGRAM_URL}
-					target="_blank"
-					rel="noopener noreferrer"
-					class={cn(footerLinkClass, 'text-primary-foreground/80 hover:text-primary-foreground')}
-				>
-					Instagram {COMPANY_DATA.INSTAGRAM}
-				</a>
 			</nav>
 		</div>
 
-		<div class="mt-10 border-t border-primary-foreground/10 pt-8 text-xs text-primary-foreground/40">
-			<p>© 2026 Teresa Guzmán Makeup · Developed by <a href="https://omnilabs.us" target="_blank" rel="noopener noreferrer" class="hover:text-primary-foreground/70 transition-colors">OmniLabs</a></p>
+		<div
+			class="mt-10 flex flex-col gap-8 border-t border-primary-foreground/10 pt-8 sm:flex-row sm:items-end sm:justify-between"
+		>
+			<p class="text-xs text-primary-foreground/40">© {new Date().getFullYear()} {COMPANY_DATA.NAME}</p>
+			<CreatedByOmnilabs class="mx-auto shrink-0 sm:mx-0 sm:ml-auto" />
 		</div>
 	</div>
 </footer>

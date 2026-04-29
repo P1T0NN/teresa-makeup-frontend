@@ -4,7 +4,7 @@
 	import { page } from '$app/state';
 
 	// CONFIG
-	import { COMPANY_DATA } from '@/shared/constants.js';
+	import { COMPANY_DATA, UNPROTECTED_PAGE_ENDPOINTS } from '@/shared/constants.js';
 
 	// LIBRARIES
 	import { deLocalizeUrl } from '@/shared/lib/paraglide/runtime';
@@ -86,7 +86,7 @@
 		<div class="flex min-w-0 items-center justify-between gap-2">
 			<div class="min-w-0">
 				{#if hasLogo}
-					<Logo size="sm" href="/" onclick={normalHeader.closeMenu} />
+					<Logo size="sm" href={UNPROTECTED_PAGE_ENDPOINTS.ROOT} onclick={normalHeader.closeMenu} />
 				{:else}
 					<span class="truncate text-sm font-semibold">{COMPANY_DATA.NAME}</span>
 				{/if}
@@ -126,7 +126,7 @@
 
 		<div class="mt-auto flex flex-col gap-3">
 			<Button
-				href="/#booking"
+				href={UNPROTECTED_PAGE_ENDPOINTS.BOOKING}
 				variant="default"
 				class="w-full bg-primary text-primary-foreground hover:bg-primary/90"
 				onclick={normalHeader.closeMenu}

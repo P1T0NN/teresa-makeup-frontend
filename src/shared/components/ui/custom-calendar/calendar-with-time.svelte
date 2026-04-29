@@ -1,19 +1,27 @@
 <script lang="ts">
 	// SVELTEKIT IMPORTS
+	import { onMount } from 'svelte';
 	import { SvelteSet } from 'svelte/reactivity';
 
 	// LIBRARIES
 	import { CalendarDate, getLocalTimeZone, today } from '@internationalized/date';
+
+	// CONFIG
+	import { COMPANY_DATA } from '@/shared/constants';
 
 	// COMPONENTS
 	import { Button } from '@/shared/components/ui/button/index.js';
 	import * as Card from '@/shared/components/ui/card/index.js';
 	import Calendar from '@/shared/components/ui/calendar/calendar.svelte';
 
+	// CONFIG
+	import { BOOKING_SETTINGS } from '@/shared/config';
+
 	// UTILS
 	import { busyApiToMsIntervals, type BusyApiSlot } from '@/features/booking/utils/busyIntervals';
 	import { buildBusyTimesForSelectedDate } from '@/features/booking/utils/busyTimesForSelectedDate';
 	import { createIsDateUnavailable } from '@/features/booking/utils/isDateUnavailable';
+	import { dateAtTimeMs } from '@/shared/utils/dateUtils';
 	import { cn } from '@/shared/utils/utils.js';
 
 	// TYPES
@@ -32,16 +40,10 @@
 		selectedTime = $bindable<string | null>(null)
 	}: Props = $props();
 
-	const FIRST_HOUR = 10;
-	const LAST_HOUR_INCLUSIVE = 19;
-	const SLOT_MINUTES = 60;
-	const SLOT_MS = SLOT_MINUTES * 60 * 1000;
+	const SLOT_MS = BOOKING_SETTINGS.SLOT_MS;
+	const timeSlots = BOOKING_SETTINGS.TIME_SLOTS;
 
 	const todayDate = today(getLocalTimeZone());
-	const timeSlots = Array.from(
-		{ length: LAST_HOUR_INCLUSIVE - FIRST_HOUR + 1 },
-		(_, i) => `${(FIRST_HOUR + i).toString().padStart(2, '0')}:00`
-	);
 
 	const tz = getLocalTimeZone();
 
@@ -58,10 +60,26 @@
 			)
 	);
 
+	let nowMs = $state(Date.now());
+
+	onMount(() => {
+		const id = window.setInterval(() => {
+			nowMs = Date.now();
+		}, 30_000);
+		return () => clearInterval(id);
+	});
+
+	function slotHasEndedForSelectedDate(calDate: CalendarDate | undefined, timeSlot: string): boolean {
+		if (calDate === undefined) return false;
+		const start = dateAtTimeMs(calDate, timeSlot, COMPANY_DATA.SALON_TIMEZONE);
+		return start + SLOT_MS <= nowMs;
+	}
+
 	$effect(() => {
-		if (selectedTime && busyTimesForSelectedDate.has(selectedTime)) {
-			selectedTime = null;
-		}
+		if (!selectedTime || !value) return;
+		const busyNow = busyTimesForSelectedDate.has(selectedTime);
+		const past = slotHasEndedForSelectedDate(value, selectedTime);
+		if (busyNow || past) selectedTime = null;
 	});
 </script>
 
@@ -84,10 +102,17 @@
 					<span class="inline-block h-4 w-4 rounded-sm bg-green-100"></span>
 					Available
 				</span>
+				
 				<span class="inline-flex items-center gap-1.5">
 					<span class="inline-block h-4 w-4 rounded-sm bg-red-100"></span>
-					Unavailable
+					Unavailable · booked
 				</span>
+
+				<span class="inline-flex items-center gap-1.5">
+					<span class="inline-block h-4 w-4 rounded-sm bg-red-950/20 line-through decoration-red-900/60"></span>
+					Past
+				</span>
+
 				<span class="inline-flex items-center gap-1.5">
 					<span class="inline-block h-4 w-4 rounded-sm bg-primary"></span>
 					Selected
@@ -101,11 +126,19 @@
 			<div class="grid gap-2">
 				{#each timeSlots as time (time)}
 					{@const isBusy = busyTimesForSelectedDate.has(time)}
+					{@const isPast = value !== undefined && slotHasEndedForSelectedDate(value, time)}
+					{@const blocked = isBusy || isPast}
+
 					<Button
-						variant={selectedTime === time ? 'default' : isBusy ? 'destructive' : 'outline'}
-						disabled={isBusy}
+						variant={selectedTime === time ? 'default' : blocked ? 'destructive' : 'outline'}
+						disabled={blocked}
+						title={isPast
+							? 'This time has already ended'
+							: isBusy
+								? 'Not available'
+								: ''}
 						onclick={() => (selectedTime = time)}
-						class={cn('w-full shadow-none', isBusy && 'disabled:opacity-100 line-through')}
+						class={cn('w-full shadow-none', blocked && 'disabled:opacity-100 line-through')}
 					>
 						{time}
 					</Button>

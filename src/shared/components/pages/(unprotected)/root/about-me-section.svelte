@@ -1,4 +1,6 @@
 <script lang="ts">
+	import UserIcon from '@lucide/svelte/icons/user';
+
 	// COMPONENTS
 	import Section from '@/shared/components/ui/section/section.svelte';
 </script>
@@ -11,20 +13,7 @@
 		<div
 			class="mx-auto flex aspect-square w-full max-w-md items-center justify-center rounded-2xl bg-border lg:mx-0"
 		>
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				class="h-20 w-20 text-muted-foreground opacity-40"
-				fill="none"
-				viewBox="0 0 24 24"
-				stroke="currentColor"
-			>
-				<path
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="1.5"
-					d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-				/>
-			</svg>
+			<UserIcon class="h-20 w-20 text-muted-foreground opacity-40" strokeWidth={1.5} aria-hidden="true" />
 		</div>
 
 		<div class="w-full min-w-0 text-left">

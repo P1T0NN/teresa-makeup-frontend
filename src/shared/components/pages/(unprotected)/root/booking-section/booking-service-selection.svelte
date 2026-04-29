@@ -1,6 +1,6 @@
 <script lang="ts">
-	// SVELTEKIT IMPORTS
-	import { page } from '$app/state';
+	// CLASSES
+	import { bookingSectionClass } from './bookingSection.svelte.ts';
 
 	// COMPONENTS
 	import * as Card from '@/shared/components/ui/card';
@@ -8,19 +8,6 @@
 
 	// DATA
 	import { serviceOptions } from '@/shared/data/servicesData';
-
-	// TYPES
-	import type { typesServiceOptionId } from '@/features/services/types/servicesTypes';
-
-	const serviceMap: Record<string, typesServiceOptionId> = {
-		bridal: 'bridal-trial',
-		social: 'social-makeup',
-		treatments: 'facial-cleansing'
-	};
-
-	let selectedService = $state<typesServiceOptionId>(
-		serviceMap[page.url.searchParams.get('service') ?? ''] ?? 'bridal-trial'
-	);
 </script>
 
 <Card.Root class="h-full gap-0 p-4 sm:p-5">
@@ -30,6 +17,10 @@
 	</Card.Header>
 
 	<Card.Content class="p-0">
-		<RadioGroupSelection bind:value={selectedService} options={serviceOptions} ariaLabel="Service selection" />
+		<RadioGroupSelection
+			bind:value={bookingSectionClass.bookingInputs.service}
+			options={serviceOptions}
+			ariaLabel="Service selection"
+		/>
 	</Card.Content>
 </Card.Root>

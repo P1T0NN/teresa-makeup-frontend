@@ -1,4 +1,7 @@
 <script lang="ts">
+	// COMPONENTS
+	import * as Avatar from '@/shared/components/ui/avatar';
+
 	// TYPES
 	import type { typesTestimonial } from '@/shared/types/types';
 
@@ -9,6 +12,10 @@
 		testimonial: typesTestimonial;
 		variant?: 'featured' | 'default';
 	} = $props();
+
+	const fallbackInitial = $derived(
+		testimonial.name.trim().charAt(0).toLocaleUpperCase(undefined) || '?'
+	);
 </script>
 
 {#if variant === 'featured'}
@@ -22,13 +29,26 @@
 			{testimonial.text}
 		</p>
 
-		<div class="mt-8 flex flex-col items-center gap-2">
-			<div class="flex gap-1 text-secondary" aria-label="{testimonial.stars} out of 5 stars">
-				{#each [...Array(testimonial.stars).keys()] as index (index)}
-					<StarIcon class="size-3.5 shrink-0 fill-current" aria-hidden="true" />
-				{/each}
+		<div class="mt-8 flex flex-col items-center gap-3">
+			<Avatar.Root class="ring-border size-14 ring-2 ring-offset-2 ring-offset-background sm:size-16">
+				<Avatar.Image
+					src={testimonial.avatarSrc}
+					width={128}
+					height={128}
+					alt=""
+				/>
+				<Avatar.Fallback aria-hidden="true">{fallbackInitial}</Avatar.Fallback>
+			</Avatar.Root>
+
+			<div class="flex flex-col items-center gap-2">
+				<div class="flex gap-1 text-secondary" aria-label="{testimonial.stars} out of 5 stars">
+					{#each [...Array(testimonial.stars).keys()] as index (index)}
+						<StarIcon class="size-3.5 shrink-0 fill-current" aria-hidden="true" />
+					{/each}
+				</div>
+
+				<p class="font-serif text-sm italic text-secondary">— {testimonial.name}</p>
 			</div>
-			<p class="font-serif text-sm italic text-secondary">— {testimonial.name}</p>
 		</div>
 	</div>
 {:else}
@@ -36,15 +56,29 @@
 		<p class="font-serif text-lg font-medium italic leading-relaxed text-foreground/80">
 			"{testimonial.text}"
 		</p>
-		<div class="mt-4 flex items-center gap-3">
-			<div class="flex gap-0.5 text-secondary" aria-label="{testimonial.stars} out of 5 stars">
-				{#each [...Array(testimonial.stars).keys()] as index (index)}
-					<StarIcon class="size-3 shrink-0 fill-current" aria-hidden="true" />
-				{/each}
+
+		<div class="mt-4 flex items-start gap-3">
+			<Avatar.Root class="ring-border shrink-0 ring-2 ring-offset-2 ring-offset-background">
+				<Avatar.Image
+					src={testimonial.avatarSrc}
+					width={64}
+					height={64}
+					alt=""
+				/>
+				<Avatar.Fallback class="text-xs" aria-hidden="true">{fallbackInitial}</Avatar.Fallback>
+			</Avatar.Root>
+
+			<div class="min-w-0 flex-1 pt-0.5">
+				<div class="flex gap-0.5 text-secondary" aria-label="{testimonial.stars} out of 5 stars">
+					{#each [...Array(testimonial.stars).keys()] as index (index)}
+						<StarIcon class="size-3 shrink-0 fill-current" aria-hidden="true" />
+					{/each}
+				</div>
+				
+				<p class="mt-1 text-xs font-semibold uppercase tracking-[0.15em] text-secondary">
+					{testimonial.name}
+				</p>
 			</div>
-			<p class="text-xs font-semibold uppercase tracking-[0.15em] text-secondary">
-				{testimonial.name}
-			</p>
 		</div>
 	</div>
 {/if}

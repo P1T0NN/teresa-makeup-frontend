@@ -1,6 +1,14 @@
 <script lang="ts">
+	// CONFIG
+	import { COMPANY_DATA } from '@/shared/constants.js';
+
 	// COMPONENTS
+	import Button from '@/shared/components/ui/button/button.svelte';
 	import Section from '@/shared/components/ui/section/section.svelte';
+
+	// LUCIDE ICONS
+	import ArrowRightIcon from '@lucide/svelte/icons/arrow-right';
+	import ImageIcon from '@lucide/svelte/icons/image';
 
 	// TODO: Replace placeholders with Teresa's real portfolio photos.
 	// Labels match the types Teresa requested: bridal, social, Fallas, special effects.
@@ -52,20 +60,7 @@
 					/>
 				-->
 				<div class="flex h-full w-full flex-col items-center justify-center gap-2 text-muted-foreground">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						class="h-8 w-8 opacity-30"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="1.5"
-							d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-						/>
-					</svg>
+					<ImageIcon class="h-8 w-8 opacity-30" strokeWidth={1.5} aria-hidden="true" />
 					<span class="text-xs font-medium opacity-40">{photo.label}</span>
 				</div>
 
@@ -80,11 +75,17 @@
 		{/each}
 	</div>
 
-	<!-- TODO: Replace with Teresa's real Instagram handle once confirmed. -->
-	<div class="mt-10 text-center">
-		<p class="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+	<div class="mt-10 flex justify-center">
+		<Button
+			href={COMPANY_DATA.INSTAGRAM_URL}
+			target="_blank"
+			rel="noopener noreferrer"
+			variant="outline"
+			size="sm"
+			class="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground hover:text-foreground"
+		>
 			More on Instagram
-			<span class="ml-1 text-secondary">→</span>
-		</p>
+			<ArrowRightIcon class="size-3.5 text-secondary" aria-hidden="true" />
+		</Button>
 	</div>
 </Section>

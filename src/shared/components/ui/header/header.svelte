@@ -3,7 +3,7 @@
 	import { page } from '$app/state';
 
 	// CONFIG
-	import { COMPANY_DATA, PROTECTED_PAGE_ENDPOINTS } from '@/shared/constants.js';
+	import { COMPANY_DATA, UNPROTECTED_PAGE_ENDPOINTS } from '@/shared/constants.js';
 
 	// LIBRARIES
 	import { deLocalizeUrl } from '@/shared/lib/paraglide/runtime';
@@ -18,6 +18,7 @@
 	// COMPONENTS
 	import Button from '@/shared/components/ui/button/button.svelte';
 	import Link from '@/shared/components/ui/link/link.svelte';
+	import LanguageSelector from '@/shared/components/ui/language-selector/language-selector.svelte';
 	import Logo from '@/shared/components/ui/logo/logo.svelte';
 	import HeaderMobile from './header-mobile.svelte';
 
@@ -78,10 +79,10 @@
 	>
 		<div class="flex min-w-0 shrink items-center gap-2 lg:shrink-0">
 			{#if hasLogo}
-				<Logo href="/" />
+				<Logo href={UNPROTECTED_PAGE_ENDPOINTS.ROOT} />
 			{:else}
 				<Link
-					href={PROTECTED_PAGE_ENDPOINTS.HOME}
+					href={UNPROTECTED_PAGE_ENDPOINTS.ROOT}
 					class="text-foreground truncate text-sm font-semibold tracking-tight sm:text-base"
 				>
 					{COMPANY_DATA.NAME}
@@ -107,8 +108,9 @@
 		</nav>
 
 		<div class="ml-auto flex shrink-0 items-center justify-end gap-2 lg:ml-0">
+			<LanguageSelector />
 			<Button
-				href="/#booking"
+				href={UNPROTECTED_PAGE_ENDPOINTS.BOOKING}
 				variant="default"
 				size="lg"
 				class="hidden bg-primary text-primary-foreground hover:bg-primary/90 lg:inline-flex"

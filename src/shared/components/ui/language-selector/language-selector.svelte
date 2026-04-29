@@ -1,4 +1,7 @@
 <script lang="ts">
+	// SVELTEKIT
+	import { page } from '$app/state';
+
 	// LIBRARIES
 	import { setLocale, getLocale } from '@/shared/lib/paraglide/runtime';
 
@@ -8,6 +11,7 @@
 	// SVGS
 	import UnitedKingdomFlag from '@/shared/svgs/united-kingdom-flag.svelte';
 	import GermanyFlag from '@/shared/svgs/germany-flag.svelte';
+	import SpainFlag from '@/shared/svgs/spain-flag.svelte';
 
 	// UTILS
 	import { cn } from '@/shared/utils/utils';
@@ -18,31 +22,48 @@
 
 	let { variant = 'default' }: Props = $props();
 
-	let selectedLanguage = $state(getLocale() === 'de' ? 'de' : 'en');
-
 	const languages = [
-		{ name: 'English', locale: 'en' as const },
-		{ name: 'Deutsch', locale: 'de' as const }
-	];
+		{ name: 'English', locale: 'en' as const, code: 'EN' },
+		{ name: 'Deutsch', locale: 'de' as const, code: 'DE' },
+		{ name: 'Español', locale: 'es' as const, code: 'ES' }
+	] as const;
+
+	type AppLocale = (typeof languages)[number]['locale'];
+
+	function localeFromRouter(): AppLocale {
+		const l = getLocale();
+		if (l === 'de' || l === 'es') return l;
+		return 'en';
+	}
+
+	let selectedLanguage = $state<AppLocale>(localeFromRouter());
+
+	$effect(() => {
+		void page.url.href;
+		selectedLanguage = localeFromRouter();
+	});
 
 	function handleLanguageChange(languageCode: string) {
-		selectedLanguage = languageCode;
-		setLocale(languageCode === 'de' ? 'de' : 'en');
+		const locale = languageCode as AppLocale;
+		selectedLanguage = locale;
+		setLocale(locale);
 	}
 </script>
 
 <Select type="single" bind:value={selectedLanguage} onValueChange={handleLanguageChange}>
 	<SelectTrigger
 		class={cn(
-			'flex items-center space-x-2 w-auto',
+			'flex w-auto items-center space-x-2',
 			variant === 'header' &&
 				'border-hero-overlay-foreground/20 bg-hero-overlay-foreground/10 hover:bg-hero-overlay-foreground/20'
 		)}
 	>
 		{#if selectedLanguage === 'en'}
 			<UnitedKingdomFlag />
-		{:else}
+		{:else if selectedLanguage === 'de'}
 			<GermanyFlag />
+		{:else}
+			<SpainFlag />
 		{/if}
 
 		<span
@@ -51,7 +72,7 @@
 				variant === 'header' ? 'text-hero-overlay-foreground' : 'text-foreground'
 			)}
 		>
-			{selectedLanguage === 'en' ? 'EN' : 'DE'}
+			{languages.find((l) => l.locale === selectedLanguage)?.code ?? 'EN'}
 		</span>
 	</SelectTrigger>
 
@@ -61,8 +82,10 @@
 				<div class="flex items-center space-x-3">
 					{#if language.locale === 'en'}
 						<UnitedKingdomFlag />
-					{:else}
+					{:else if language.locale === 'de'}
 						<GermanyFlag />
+					{:else}
+						<SpainFlag />
 					{/if}
 
 					<div class="flex flex-col">
@@ -71,7 +94,7 @@
 						</span>
 
 						<span class="font-dm-sans text-xs text-muted-foreground">
-							{language.locale === 'en' ? 'EN' : 'DE'}
+							{language.code}
 						</span>
 					</div>
 				</div>

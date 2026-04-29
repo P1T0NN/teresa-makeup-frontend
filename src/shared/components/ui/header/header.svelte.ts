@@ -1,8 +1,11 @@
+import { UNPROTECTED_PAGE_ENDPOINTS } from '@/shared/constants.js';
+
+/** Section anchors on `/` via {@link UNPROTECTED_PAGE_ENDPOINTS}. */
 export const navItems = [
-	{ href: '/#services', label: 'Services' },
-	{ href: '/#gallery', label: 'Gallery' },
-	{ href: '/#about', label: 'About' },
-	{ href: '/#contact', label: 'Contact' },
+	{ href: UNPROTECTED_PAGE_ENDPOINTS.SERVICES, label: 'Services' },
+	{ href: UNPROTECTED_PAGE_ENDPOINTS.PORTFOLIO, label: 'Gallery' },
+	{ href: UNPROTECTED_PAGE_ENDPOINTS.ABOUT_ME, label: 'About' },
+	{ href: UNPROTECTED_PAGE_ENDPOINTS.CONTACT, label: 'Contact' }
 ] as const;
 
 export const navLinkClass =

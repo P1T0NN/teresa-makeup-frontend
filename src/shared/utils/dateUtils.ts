@@ -1,4 +1,7 @@
-// LIBRARIES
+// CONFIG
+import { COMPANY_DATA } from '@/shared/constants';
+
+// TYPES
 import type { DateValue } from '@internationalized/date';
 
 /**
@@ -10,6 +13,33 @@ import type { DateValue } from '@internationalized/date';
 export function dateAtTimeMs(date: DateValue, time: string, timeZone: string): number {
 	const [h, m] = time.split(':').map(Number);
 	return date.toDate(timeZone).getTime() + h * 3_600_000 + m * 60_000;
+}
+
+/** Wall-clock `yyyy-mm-ddTHH:mm:ss` in the salon IANA zone (`COMPANY_DATA.SALON_TIMEZONE`) for Google's `dateTime` + `timeZone`. */
+export function wallSalonLocalDateTimeString(epochMs: number): string {
+	const partsMap = Object.fromEntries(
+		new Intl.DateTimeFormat('en-CA', {
+			timeZone: COMPANY_DATA.SALON_TIMEZONE,
+			year: 'numeric',
+			month: '2-digit',
+			day: '2-digit',
+			hour: '2-digit',
+			minute: '2-digit',
+			second: '2-digit',
+			hour12: false,
+			hourCycle: 'h23'
+		})
+			.formatToParts(new Date(epochMs))
+			.filter((p) => p.type !== 'literal')
+			.map((p) => [p.type, p.value] as const)
+	);
+	const y = partsMap.year!;
+	const mo = partsMap.month!;
+	const dy = partsMap.day!;
+	const hh = partsMap.hour!;
+	const mm = partsMap.minute!;
+	const ss = partsMap.second!;
+	return `${y}-${mo}-${dy}T${hh}:${mm}:${ss}`;
 }
 
 /**

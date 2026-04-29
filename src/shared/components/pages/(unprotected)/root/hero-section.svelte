@@ -1,5 +1,12 @@
 <script lang="ts">
+	// CONFIG
+	import { UNPROTECTED_PAGE_ENDPOINTS } from '@/shared/constants.js';
+
+	// COMPONENTS
 	import Button from '@/shared/components/ui/button/button.svelte';
+
+	// LUCIDE ICONS
+	import ArrowRightIcon from '@lucide/svelte/icons/arrow-right';
 </script>
 
 <section
@@ -31,20 +38,23 @@
 				<!-- CTAs -->
 				<div class="flex flex-wrap gap-3">
 					<Button
-						href="/#booking"
+						href={UNPROTECTED_PAGE_ENDPOINTS.BOOKING}
 						variant="default"
 						size="lg"
-						class="bg-primary text-primary-foreground hover:bg-primary/90"
+						class="gap-2 bg-primary text-primary-foreground hover:bg-primary/90"
 					>
-						→ Book bridal trial
+						<ArrowRightIcon class="size-4 shrink-0" aria-hidden="true" />
+						<span>Book Appointment</span>
 					</Button>
+					
 					<Button
-						href="/#gallery"
+						href={UNPROTECTED_PAGE_ENDPOINTS.PORTFOLIO}
 						variant="outline"
 						size="lg"
-						class="border-primary text-primary hover:bg-primary/5"
+						class="gap-2 border-primary text-primary hover:bg-primary/5"
 					>
-						View portfolio
+						<ArrowRightIcon class="size-4 shrink-0" aria-hidden="true" />
+						<span>View portfolio</span>
 					</Button>
 				</div>
 			</div>
@@ -52,23 +62,13 @@
 			<!-- Image — first on mobile, right on desktop -->
 			<div class="order-1 lg:order-2">
 				<div
-					class="relative w-full overflow-hidden bg-muted lg:h-[calc(100dvh-4rem)]"
+					class="relative w-full overflow-hidden lg:h-[calc(100dvh-4rem)]"
 					style="aspect-ratio: 4/5; max-height: calc(100dvh - 4rem);"
 				>
-					<!-- TODO: Replace with Teresa's real hero photo (magazine spread p.2).
-					     Minimum width: 1500px. Alt text below is correct for SEO. -->
-					<div class="flex h-full w-full items-center justify-center bg-muted text-center">
-						<div class="px-8 text-muted-foreground">
-							<div class="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-full border-2 border-dashed border-muted-foreground/30">
-								<svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 opacity-40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-								</svg>
-							</div>
-							<p class="text-sm font-medium opacity-50">Bridal photo · Teresa Guzmán Makeup</p>
-							<p class="mt-1 text-xs opacity-30">Use magazine spread p.2 — min. 1500px wide</p>
-						</div>
+					<div class="flex h-full w-full items-center justify-center px-4 text-center">
+						<p class="text-muted-foreground text-sm sm:text-base">Here goes image min. 1500px wide</p>
 					</div>
-					<!-- Actual image (uncomment and remove the placeholder above when photo is ready):
+					<!--
 					<img
 						src="/images/hero-bridal.jpg"
 						alt="bridal makeup Valencia – Teresa Guzmán Makeup"
