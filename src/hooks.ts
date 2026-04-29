@@ -1,5 +1,8 @@
 import type { Reroute } from '@sveltejs/kit';
 import { deLocalizeUrl } from '@/shared/lib/paraglide/runtime';
+import type { Transport } from '@sveltejs/kit';
+
+export const transport: Transport = {};
 
 /**
  * Map public URLs to SvelteKit route paths (strip /en, /de, …).
