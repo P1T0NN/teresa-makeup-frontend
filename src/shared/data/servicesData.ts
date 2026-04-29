@@ -21,6 +21,23 @@ export const serviceOptions: { id: typesServiceOptionId; label: string }[] = [
 /** Same order as {@link serviceOptions}; reuse for validators (e.g. Valibot picklist). */
 export const serviceOptionIds = serviceOptions.map((o) => o.id);
 
+/** Appointment length for Google Calendar and slot availability (minutes). */
+export const SERVICE_BOOKING_DURATION_MINUTES: Record<typesServiceOptionId, number> = {
+	'bridal-trial': 120,
+	'social-makeup': 60,
+	'facial-cleansing': 120,
+	'maderotherapy': 60,
+	'lymphatic-drainage': 60
+} as const;
+
+export function getServiceBookingDurationMinutes(id: typesServiceOptionId): number {
+	return SERVICE_BOOKING_DURATION_MINUTES[id];
+}
+
+export function getServiceBookingDurationMs(id: typesServiceOptionId): number {
+	return getServiceBookingDurationMinutes(id) * 60_000;
+}
+
 /**
  * Marketing copy for `#services` — rows aligned 1:1 with {@link serviceOptions}.
  */

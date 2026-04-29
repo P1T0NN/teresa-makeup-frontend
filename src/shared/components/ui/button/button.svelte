@@ -42,6 +42,8 @@
 </script>
 
 <script lang="ts">
+	import { localizeHrefForUi } from '@/shared/utils/localizedPath';
+
 	let {
 		class: className,
 		variant = "default",
@@ -53,6 +55,8 @@
 		children,
 		...restProps
 	}: ButtonProps = $props();
+
+	const localizedHref = $derived.by(() => localizeHrefForUi(href));
 </script>
 
 {#if href}
@@ -60,7 +64,7 @@
 		bind:this={ref}
 		data-slot="button"
 		class={cn(buttonVariants({ variant, size }), className)}
-		href={disabled ? undefined : href}
+		href={disabled ? undefined : localizedHref}
 		aria-disabled={disabled}
 		role={disabled ? "link" : undefined}
 		tabindex={disabled ? -1 : undefined}

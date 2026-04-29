@@ -12,6 +12,7 @@
 		<div class="min-w-0">
 			<ContactLeftContent />
 		</div>
+		
 		<div class="min-w-0">
 			<ContactRightContent />
 		</div>

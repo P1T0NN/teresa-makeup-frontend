@@ -6,11 +6,12 @@ import { isOverlap, type MsInterval } from './isOverlap';
 import type { DateValue } from '@internationalized/date';
 
 /**
- * Returns a predicate: `true` when every `timeSlots` slot on that calendar day overlaps a busy interval
- * (whole day treated as unavailable for booking).
+ * Returns a predicate: `true` when every **candidate start** in `timeSlots` has
+ * `[slotStart, slotStart + slotDurationMs)` overlapping a busy interval (no full
+ * appointment window is free that day).
  */
 export function createIsDateUnavailable(
-	timeSlots: readonly string[],
+	candidateStartTimeSlots: readonly string[],
 	intervals: readonly MsInterval[],
 	timeZone: string,
 	slotDurationMs: number
@@ -20,7 +21,7 @@ export function createIsDateUnavailable(
 	}
 
 	return (date: DateValue) => {
-		for (const time of timeSlots) {
+		for (const time of candidateStartTimeSlots) {
 			const slotStart = dateAtTimeMs(date, time, timeZone);
 			if (!isOverlap(slotStart, slotStart + slotDurationMs, intervals)) {
 				return false;

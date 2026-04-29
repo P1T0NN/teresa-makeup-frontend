@@ -6,7 +6,6 @@ import { GOOGLE_CALENDAR_ID } from '$env/static/private';
 import { CalendarDate } from '@internationalized/date';
 
 // CONFIG
-import { BOOKING_SETTINGS } from '@/shared/config';
 import { COMPANY_DATA } from '@/shared/constants';
 
 // REMOTE FUNCTIONS
@@ -22,6 +21,9 @@ import { dateAtTimeMs, wallSalonLocalDateTimeString } from '@/shared/utils/dateU
 
 // SCHEMAS
 import { createReservationInputSchema, type typesCreateReservationOutput } from '@/features/booking/schemas/bookingSchemas';
+
+// DATA
+import { getServiceBookingDurationMs } from '@/shared/data/servicesData';
 
 // TYPES
 import type { typesApiResult } from '@/shared/types/types';
@@ -44,7 +46,7 @@ export const createReservation = command(
 		);
 
 		const slotStart = dateAtTimeMs(cd, payload.bookingTime, COMPANY_DATA.SALON_TIMEZONE);
-		const slotEnd = slotStart + BOOKING_SETTINGS.SLOT_MS;
+		const slotEnd = slotStart + getServiceBookingDurationMs(payload.service);
 
 		const now = Date.now();
 		if (slotEnd <= now) {

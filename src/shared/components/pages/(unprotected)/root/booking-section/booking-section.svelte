@@ -1,9 +1,6 @@
 <script lang="ts">
 	// LIBRARIES
-	import { getLocalTimeZone } from '@internationalized/date';
-
-	// QUERIES
-	import { getAvailability } from '@/features/booking/queries/bookingQueries.remote';
+	import { m } from '@/shared/lib/paraglide/messages';
 
 	// CLASSES
 	import { bookingSectionClass } from './bookingSection.svelte.ts';
@@ -15,24 +12,26 @@
 	import BookingForm from './booking-form.svelte';
 	import BookingServiceSelection from './booking-service-selection.svelte';
 
+	// REMOTE FUNCTIONS
+	import { getAvailability } from '@/features/booking/queries/bookingQueries.remote';
+
+	// UTILS
+	import { formatBookingStatusDate } from '@/shared/utils/dateUtils';
+
 	const bookingStatusText = $derived(
 		bookingSectionClass.bookingInputs.bookingDate && bookingSectionClass.bookingInputs.bookingTime
-			? `Your meeting is booked for ${bookingSectionClass.bookingInputs.bookingDate
-					.toDate(getLocalTimeZone())
-					.toLocaleDateString('en-US', {
-						weekday: 'long',
-						day: 'numeric',
-						month: 'short'
-					})} at ${bookingSectionClass.bookingInputs.bookingTime}.`
-			: 'You have not chosen the booking date yet.'
+			? `${m['RootPage.BookingSection.yourMeetingIsBookedFor']()} ${formatBookingStatusDate(
+					bookingSectionClass.bookingInputs.bookingDate
+				)} ${m['RootPage.BookingSection.at']()} ${bookingSectionClass.bookingInputs.bookingTime}.`
+			: m['RootPage.BookingSection.youHaveNotChosenTheBookingDateYet']()
 	);
 </script>
 
 <Section id="booking" yPadding="lg" class="bg-primary">
 	<div class="mb-8 text-center text-primary-foreground">
-		<h2 class="font-serif text-3xl font-medium italic sm:text-4xl">Book your appointment</h2>
+		<h2 class="font-serif text-3xl font-medium italic sm:text-4xl">{m['RootPage.BookingSection.bookYourAppointment']()}</h2>
 		<p class="mt-2 text-sm text-primary-foreground/80 sm:text-base">
-			Choose your service, date, and preferred time.
+			{m['RootPage.BookingSection.chooseYourServiceDateAndPreferredTime']()}
 		</p>
 		<p class="mt-4 text-xl font-semibold sm:text-2xl">{bookingStatusText}</p>
 	</div>
@@ -48,6 +47,7 @@
 			{#if availability}
 				<CalendarWithTime
 					busy={availability.busy}
+					service={bookingSectionClass.bookingInputs.service}
 					bind:value={bookingSectionClass.bookingInputs.bookingDate}
 					bind:selectedTime={bookingSectionClass.bookingInputs.bookingTime}
 				/>

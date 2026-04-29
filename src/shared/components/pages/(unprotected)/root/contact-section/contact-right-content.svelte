@@ -1,4 +1,7 @@
 <script lang="ts">
+	// LIBRARIES
+	import { m } from '@/shared/lib/paraglide/messages';
+
 	// CLASSES
 	import { contactSectionClass } from './contactSection.svelte.ts';
 
@@ -22,10 +25,10 @@
 
 <Card.Root class="gap-0 border-0 bg-background p-4 shadow-xl sm:p-5">
 	<Card.Header class="p-0">
-		<Card.Title class="text-base font-semibold text-foreground">Send a message</Card.Title>
-
+		<Card.Title class="text-base font-semibold text-foreground">{m['RootPage.ContactSection.sendAMessage']()}</Card.Title>
+		
 		<Card.Description class="mt-1 text-sm text-muted-foreground">
-			Share your enquiry and Teresa will reply as soon as she can — usually within 24 hours.
+			{m['RootPage.ContactSection.description']()}
 		</Card.Description>
 	</Card.Header>
 
@@ -33,7 +36,7 @@
 		<FieldSet>
 			<FieldGroup class="gap-4">
 				<Field data-invalid={Boolean(contactSectionClass.fieldErrors.name)}>
-					<FieldLabel for="contact-name">Your name</FieldLabel>
+					<FieldLabel for="contact-name">{m['RootPage.ContactSection.yourName']()}</FieldLabel>
 
 					<FieldContent>
 						<Input
@@ -42,7 +45,7 @@
 							type="text"
 							name="name"
 							autocomplete="name"
-							placeholder="Your full name"
+							placeholder={m['RootPage.ContactSection.yourFullName']()}
 							aria-invalid={Boolean(contactSectionClass.fieldErrors.name)}
 							oninput={clearFieldErrorOn(contactSectionClass, 'name')}
 						/>
@@ -54,7 +57,7 @@
 				</Field>
 
 				<Field data-invalid={Boolean(contactSectionClass.fieldErrors.email)}>
-					<FieldLabel for="contact-email">Email</FieldLabel>
+					<FieldLabel for="contact-email">{m['RootPage.ContactSection.email']()}</FieldLabel>
 
 					<FieldContent>
 						<Input
@@ -63,7 +66,7 @@
 							type="email"
 							name="email"
 							autocomplete="email"
-							placeholder="you@example.com"
+							placeholder={m['RootPage.ContactSection.yourEmail']()}
 							aria-invalid={Boolean(contactSectionClass.fieldErrors.email)}
 							oninput={clearFieldErrorOn(contactSectionClass, 'email')}
 						/>
@@ -75,7 +78,7 @@
 				</Field>
 
 				<Field data-invalid={Boolean(contactSectionClass.fieldErrors.message)}>
-					<FieldLabel for="contact-message">Message</FieldLabel>
+					<FieldLabel for="contact-message">{m['RootPage.ContactSection.message']()}</FieldLabel>
 
 					<FieldContent>
 						<Textarea
@@ -83,7 +86,7 @@
 							bind:value={contactSectionClass.contactInputs.message}
 							name="message"
 							rows={5}
-							placeholder="Dates, venue, vibe, allergies — whatever helps Teresa prepare."
+							placeholder={m['RootPage.ContactSection.placeholder']()}
 							aria-invalid={Boolean(contactSectionClass.fieldErrors.message)}
 							oninput={clearFieldErrorOn(contactSectionClass, 'message')}
 							class="resize-none"
@@ -100,7 +103,7 @@
 		<ContactSubmitButton />
 
 		<p class="mt-4 text-center text-xs leading-relaxed text-muted-foreground">
-			No spam — just a thoughtful reply when she is back at her desk.
+			{m['RootPage.ContactSection.noSpam']()}
 		</p>
 	</Card.Content>
 </Card.Root>

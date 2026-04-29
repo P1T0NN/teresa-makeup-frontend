@@ -1,12 +1,10 @@
 <script lang="ts">
-	// LIBRARIES
-	import { localizeHref } from '@/shared/lib/paraglide/runtime';
-
 	// UTILS
-	import { shouldSkipLocalePrefix } from '@/shared/utils/paraglideHref';
+	import { localizeHrefForUi } from '@/shared/utils/localizedPath';
 	import { cn, type WithElementRef } from '@/shared/utils/utils.js';
 
 	// TYPES
+	import type { LocalizeHrefUiLocale } from '@/shared/utils/localizedPath';
 	import type { HTMLAnchorAttributes } from 'svelte/elements';
 	import type { Snippet } from 'svelte';
 
@@ -14,7 +12,7 @@
 		Omit<HTMLAnchorAttributes, 'href'> & {
 			href: string;
 			/** Override target locale; defaults to current locale from the URL. */
-			locale?: 'en' | 'de' | 'es';
+			locale?: LocalizeHrefUiLocale;
 			children: Snippet;
 		}
 	>;
@@ -28,11 +26,7 @@
 		...restProps
 	}: LinkProps = $props();
 
-	const localizedHref = $derived(
-		shouldSkipLocalePrefix(href)
-			? href
-			: localizeHref(href, locale !== undefined ? { locale } : undefined)
-	);
+	const localizedHref = $derived(localizeHrefForUi(href, locale !== undefined ? { locale } : undefined));
 </script>
 
 <a bind:this={ref} data-slot="link" href={localizedHref} class={cn(className)} {...restProps}>

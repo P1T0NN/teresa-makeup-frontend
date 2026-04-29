@@ -33,6 +33,20 @@ export function formatCalendarDateLong(
 		});
 }
 
+/**
+ * Booking status line — weekday, numeric day, short month (`en-US`), in `timeZone` (default: device local).
+ */
+export function formatBookingStatusDate(
+	date: DateValue,
+	timeZone: string = getLocalTimeZone()
+): string {
+	return date.toDate(timeZone).toLocaleDateString('en-US', {
+		weekday: 'long',
+		day: 'numeric',
+		month: 'short'
+	});
+}
+
 /** Wall-clock `yyyy-mm-ddTHH:mm:ss` in the salon IANA zone (`COMPANY_DATA.SALON_TIMEZONE`) for Google's `dateTime` + `timeZone`. */
 export function wallSalonLocalDateTimeString(epochMs: number): string {
 	const partsMap = Object.fromEntries(

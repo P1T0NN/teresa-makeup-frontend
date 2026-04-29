@@ -2,8 +2,8 @@
 import { CalendarDate } from '@internationalized/date';
 import * as v from 'valibot';
 
-// CONFIG
-import { BOOKING_SETTINGS } from '@/shared/config';
+// UTILS
+import { getBookingStartTimeSlotsForService } from '@/features/booking/utils/bookingStartSlots';
 
 // DATA
 import { serviceOptionIds } from '@/shared/data/servicesData';
@@ -58,14 +58,6 @@ export const bookingCalendarDateSchema = v.pipe(
 	)
 );
 
-const bookingTimeSlotSchema = v.pipe(
-	v.string(),
-	v.check(
-		(t) => (BOOKING_SETTINGS.TIME_SLOTS as readonly string[]).includes(t),
-		'Please pick a valid time slot.'
-	)
-);
-
 /** Date + time as selected in the booking UI (required; null/undefined fail with a clear message). */
 const bookingDateFieldSchema = v.pipe(
 	v.any(),
@@ -88,18 +80,24 @@ const bookingTimeFieldSchema = v.pipe(
 		(input) => input != null && input !== '' && typeof input === 'string',
 		'Please select a time.'
 	),
-	bookingTimeSlotSchema
+	v.string()
 );
 
 /** Canonical booking payload (`createReservation` + booking UI). */
-export const createReservationInputSchema = v.object({
-	name: nameFieldSchema,
-	email: emailFieldSchema,
-	phone: phoneFieldSchema,
-	service: serviceFieldSchema,
-	bookingDate: bookingDateFieldSchema,
-	bookingTime: bookingTimeFieldSchema
-});
+export const createReservationInputSchema = v.pipe(
+	v.object({
+		name: nameFieldSchema,
+		email: emailFieldSchema,
+		phone: phoneFieldSchema,
+		service: serviceFieldSchema,
+		bookingDate: bookingDateFieldSchema,
+		bookingTime: bookingTimeFieldSchema
+	}),
+	v.check(
+		(data) => getBookingStartTimeSlotsForService(data.service).includes(data.bookingTime),
+		'Please pick a valid time slot for this service.'
+	)
+);
 
 export type typesCreateReservationInput = v.InferInput<typeof createReservationInputSchema>;
 export type typesCreateReservationOutput = v.InferOutput<typeof createReservationInputSchema>;

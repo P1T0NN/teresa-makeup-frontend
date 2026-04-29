@@ -1,4 +1,8 @@
 <script lang="ts">
+	// LIBRARIES
+	import { m } from '@/shared/lib/paraglide/messages';
+	
+	// COMPONENTS
 	import HeroSection from '@/shared/components/pages/(unprotected)/root/hero-section.svelte';
 	import ServicesSection from '@/shared/components/pages/(unprotected)/root/services-section.svelte';
 	import BookingSection from '@/shared/components/pages/(unprotected)/root/booking-section/booking-section.svelte';
@@ -10,10 +14,10 @@
 </script>
 
 <svelte:head>
-	<title>Professional Makeup Artist in Valencia · Bridal Specialist – Teresa Guzmán Makeup</title>
+	<title>{m['SEO.RootPage.title']()}</title>
 	<meta
 		name="description"
-		content="Bridal, social, and special-effects makeup in Valencia. Teresa Guzmán: long-wear skin prep, on-location service, and a personalized trial. Book your appointment."
+		content={m['SEO.RootPage.description']()}
 	/>
 </svelte:head>
 

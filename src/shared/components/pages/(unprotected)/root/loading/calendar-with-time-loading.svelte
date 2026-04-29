@@ -2,6 +2,7 @@
 	// COMPONENTS
 	import * as Card from '@/shared/components/ui/card/index.js';
 	import { Skeleton } from '@/shared/components/ui/skeleton/index.js';
+	import { BOOKING_SETTINGS } from '@/shared/config';
 </script>
 
 <!--
@@ -56,7 +57,7 @@
 			class="no-scrollbar inset-y-0 end-0 flex max-h-72 w-full flex-col gap-4 overflow-hidden border-t p-6 md:absolute md:max-h-none md:w-48 md:border-s md:border-t-0"
 		>
 			<div class="grid gap-2">
-				{#each [...Array(10).keys()] as i (i)}
+				{#each [...Array(BOOKING_SETTINGS.TIME_SLOTS.length).keys()] as i (i)}
 					<Skeleton class="h-9 w-full rounded-lg bg-primary/20" />
 				{/each}
 			</div>

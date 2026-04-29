@@ -1,4 +1,7 @@
 <script lang="ts">
+	// LIBRARIES
+	import { m } from '@/shared/lib/paraglide/messages';
+	
 	// CONFIG
 	import { COMPANY_DATA } from '@/shared/constants';
 
@@ -14,18 +17,17 @@
 		id="contact-heading"
 		class="text-4xl font-normal leading-[1.05] text-primary-foreground md:text-5xl"
 	>
-		Let's plan<br />
-		<span class="font-serif italic">your makeup</span>
+		{m['RootPage.ContactSection.letsPlan']()}<br />
+		<span class="font-serif italic">{m['RootPage.ContactSection.yourMakeup']()}</span>
 	</h2>
 
 	<p class="mt-6 max-w-sm text-base leading-relaxed text-primary-foreground/70">
-		Whether it's a wedding in Valencia, a special event, or a trial before the big day — tell Teresa
-		what you have in mind. She reads every message and usually replies within 24 hours.
+		{m['RootPage.ContactSection.whetherItsAWeddingInValenciaASpecialEventOrATrialBeforeTheBigDay']()}
 	</p>
 
 	<div class="my-10 h-px bg-linear-to-r from-primary-foreground/20 to-transparent"></div>
 
-	<p class="mb-5 text-sm text-primary-foreground/60">Prefer email?</p>
+	<p class="mb-5 text-sm text-primary-foreground/60">{m['RootPage.ContactSection.preferEmail']()}</p>
 
 	<div class="flex flex-col gap-4">
 		<a

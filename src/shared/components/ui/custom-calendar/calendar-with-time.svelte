@@ -14,34 +14,38 @@
 	import * as Card from '@/shared/components/ui/card/index.js';
 	import Calendar from '@/shared/components/ui/calendar/calendar.svelte';
 
-	// CONFIG
-	import { BOOKING_SETTINGS } from '@/shared/config';
+	// DATA
+	import { getServiceBookingDurationMs } from '@/shared/data/servicesData';
 
 	// UTILS
 	import { busyApiToMsIntervals, type BusyApiSlot } from '@/features/booking/utils/busyIntervals';
 	import { buildBusyTimesForSelectedDate } from '@/features/booking/utils/busyTimesForSelectedDate';
+	import { getBookingStartTimeSlotsForService } from '@/features/booking/utils/bookingStartSlots';
 	import { createIsDateUnavailable } from '@/features/booking/utils/isDateUnavailable';
 	import { dateAtTimeMs } from '@/shared/utils/dateUtils';
 	import { cn } from '@/shared/utils/utils.js';
 
 	// TYPES
 	import type { MsInterval } from '@/features/booking/utils/isOverlap';
+	import type { typesServiceOptionId } from '@/features/services/types/servicesTypes';
 
 	type Props = {
 		/** Busy intervals from Google Calendar `freebusy` (ISO `start` / `end`). Passed from parent. */
 		busy: readonly BusyApiSlot[];
+		service: typesServiceOptionId;
 		value?: CalendarDate;
 		selectedTime?: string | null;
 	};
 
 	let {
 		busy,
+		service,
 		value = $bindable<CalendarDate | undefined>(),
 		selectedTime = $bindable<string | null>(null)
 	}: Props = $props();
 
-	const SLOT_MS = BOOKING_SETTINGS.SLOT_MS;
-	const timeSlots = BOOKING_SETTINGS.TIME_SLOTS;
+	const candidateSlots = $derived(getBookingStartTimeSlotsForService(service));
+	const appointmentDurationMs = $derived(getServiceBookingDurationMs(service));
 
 	const todayDate = today(getLocalTimeZone());
 
@@ -53,13 +57,13 @@
 	const busyIntervals: MsInterval[] = $derived(busyApiToMsIntervals(busy));
 
 	const isDateUnavailable = $derived.by(() =>
-		createIsDateUnavailable(timeSlots, busyIntervals, tz, SLOT_MS)
+		createIsDateUnavailable(candidateSlots, busyIntervals, tz, appointmentDurationMs)
 	);
 
 	const busyTimesForSelectedDate = $derived.by(
 		() =>
 			new SvelteSet(
-				buildBusyTimesForSelectedDate(value, timeSlots, busyIntervals, tz, SLOT_MS)
+				buildBusyTimesForSelectedDate(value, candidateSlots, busyIntervals, tz, appointmentDurationMs)
 			)
 	);
 
@@ -75,7 +79,7 @@
 	function slotHasEndedForSelectedDate(calDate: CalendarDate | undefined, timeSlot: string): boolean {
 		if (calDate === undefined) return false;
 		const start = dateAtTimeMs(calDate, timeSlot, COMPANY_DATA.SALON_TIMEZONE);
-		return start + SLOT_MS <= nowMs;
+		return start + appointmentDurationMs <= nowMs;
 	}
 
 	$effect(() => {
@@ -85,6 +89,10 @@
 			value = undefined;
 			selectedTime = null;
 		}
+	});
+
+	$effect(() => {
+		if (selectedTime && !candidateSlots.includes(selectedTime)) selectedTime = null;
 	});
 
 	$effect(() => {
@@ -141,7 +149,7 @@
 			class="no-scrollbar inset-y-0 end-0 flex max-h-72 w-full scroll-pb-6 flex-col gap-4 overflow-y-auto border-t p-6 md:absolute md:max-h-none md:w-48 md:border-s md:border-t-0"
 		>
 			<div class="grid gap-2">
-				{#each timeSlots as time (time)}
+				{#each candidateSlots as time (time)}
 					{@const isBusy = busyTimesForSelectedDate.has(time)}
 					{@const isPast = value !== undefined && slotHasEndedForSelectedDate(value, time)}
 					{@const blocked = isBusy || isPast}

@@ -1,10 +1,11 @@
 <script lang="ts">
-	// SVELTEKIT
+	// SVELTEKIT IMPORTS
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
 
 	// LIBRARIES
 	import { safeParse } from 'valibot';
+	import { m } from '@/shared/lib/paraglide/messages';
 
 	// CLASSES
 	import { bookingSectionClass } from './bookingSection.svelte.ts';
@@ -76,5 +77,5 @@
 		<Spinner />
 	{/if}
 
-	Confirm Reservation
+	{m['RootPage.BookingSection.confirmReservation']()}
 </Button>

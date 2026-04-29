@@ -1,4 +1,7 @@
 <script lang="ts">
+	// LIBRARIES
+	import { m } from '@/shared/lib/paraglide/messages';
+	
 	// CLASSES
 	import { bookingSectionClass } from './bookingSection.svelte.ts';
 
@@ -27,14 +30,14 @@
 
 <Card.Root class="h-full gap-0 p-4 sm:p-5">
 	<Card.Header class="p-0">
-		<Card.Title class="text-base font-semibold text-foreground">Your details</Card.Title>
+		<Card.Title class="text-base font-semibold text-foreground">{m['RootPage.BookingSection.yourDetails']()}</Card.Title>
 
 		<p class="mt-2 text-sm leading-snug font-semibold text-foreground sm:text-base">
 			{statusText}
 		</p>
 
 		<Card.Description class="mt-1.5 text-sm text-muted-foreground">
-			We'll use this to confirm your reservation.
+			{m['RootPage.BookingSection.weWillUseThisToConfirmYourReservation']()}
 		</Card.Description>
 	</Card.Header>
 
@@ -43,7 +46,7 @@
 			<FieldGroup class="gap-4">
 				<div class="grid grid-cols-1 gap-4 md:grid-cols-3">
 					<Field data-invalid={Boolean(bookingSectionClass.fieldErrors.name)}>
-						<FieldLabel for="booking-name">Name</FieldLabel>
+						<FieldLabel for="booking-name">{m['RootPage.BookingSection.name']()}</FieldLabel>
 
 						<FieldContent>
 							<Input
@@ -51,7 +54,7 @@
 								bind:value={bookingSectionClass.bookingInputs.name}
 								name="name"
 								autocomplete="name"
-								placeholder="Your full name"
+								placeholder={m['RootPage.BookingSection.yourFullName']()}
 								aria-invalid={Boolean(bookingSectionClass.fieldErrors.name)}
 								oninput={() =>
 									(bookingSectionClass.fieldErrors = clearValibotFieldError(
@@ -67,7 +70,7 @@
 					</Field>
 
 					<Field data-invalid={Boolean(bookingSectionClass.fieldErrors.email)}>
-						<FieldLabel for="booking-email">Email</FieldLabel>
+						<FieldLabel for="booking-email">{m['RootPage.BookingSection.email']()}</FieldLabel>
 
 						<FieldContent>
 							<Input
@@ -76,7 +79,7 @@
 								type="email"
 								name="email"
 								autocomplete="email"
-								placeholder="you@example.com"
+								placeholder={m['RootPage.BookingSection.yourEmail']()}
 								aria-invalid={Boolean(bookingSectionClass.fieldErrors.email)}
 								oninput={() =>
 									(bookingSectionClass.fieldErrors = clearValibotFieldError(
@@ -96,9 +99,9 @@
 							for="booking-phone"
 							class="inline-flex w-full min-w-0 flex-wrap items-baseline gap-x-1.5 gap-y-0"
 						>
-							<span>Phone</span>
+							<span>{m['RootPage.BookingSection.phone']()}</span>
 
-							<span class="font-normal text-muted-foreground">(Optional)</span>
+							<span class="font-normal text-muted-foreground">({m['RootPage.BookingSection.optional']()})</span>
 						</FieldLabel>
 
 						<FieldContent>

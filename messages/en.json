@@ -3,6 +3,10 @@
 	"example_message": "Hello world {username}",
 
     "SEO": {
+        "RootPage": {
+            "title": "Professional Makeup Artist in Valencia · Bridal Specialist – Teresa Guzmán Makeup",
+            "description": "Bridal, social, and special-effects makeup in Valencia. Teresa Guzmán: long-wear skin prep, on-location service, and a personalized trial. Book your appointment."
+        },
         "ReservationConfirmationPage": {
             "title": "Appointment Confirmed · Teresa Guzmán Makeup",
             "description": "Your makeup appointment with Teresa Guzmán has been confirmed."
@@ -11,6 +15,43 @@
 
     "CreatedByOmnilabs": {
         "label": "Created by"
+    },
+
+    "RootPage": {
+        "BookingSection": {
+            "bookYourAppointment": "Book your appointment",
+            "chooseYourServiceDateAndPreferredTime": "Choose your service, date, and preferred time.",
+            "selectService": "Select service",
+            "chooseOneOption": "Choose one option",
+            "serviceSelection": "Service selection",
+            "yourMeetingIsBookedFor": "Your meeting is booked for",
+            "at": "at",
+            "youHaveNotChosenTheBookingDateYet": "You have not chosen the booking date yet",
+            "yourDetails": "Your details",
+            "weWillUseThisToConfirmYourReservation": "We'll use this to confirm your reservation",
+            "name": "Name",
+            "yourFullName": "Your full name",
+            "email": "Email",
+            "yourEmail": "you@example.com",
+            "phone": "Phone",
+            "optional": "Optional",
+            "confirmReservation": "Confirm Reservation"
+        },
+        "ContactSection": {
+            "letsPlan": "Let's plan",
+            "yourMakeup": "your makeup",
+            "whetherItsAWeddingInValenciaASpecialEventOrATrialBeforeTheBigDay": "Whether it's a wedding in Valencia, a special event, or a trial before the big day — tell Teresa what you have in mind. She reads every message and usually replies within 24 hours.",
+            "preferEmail": "Prefer email?",
+            "sendAMessage": "Send a message",
+            "description": "Share your enquiry and Teresa will reply as soon as she can — usually within 24 hours.",
+            "yourName": "Your name",
+            "yourFullName": "Your full name",
+            "email": "Email",
+            "yourEmail": "you@example.com",
+            "message": "Message",
+            "placeholder": "Dates, venue, vibe, allergies — whatever helps Teresa prepare.",
+            "noSpam": "No spam — just a thoughtful reply when she is back at her desk."
+        }
     },
 
     "ReservationConfirmationPage": {
