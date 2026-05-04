@@ -43,11 +43,30 @@
 	afterNavigate(() => {
 		normalHeader.closeMenu();
 	});
+
+	function handleNavClick(event: MouseEvent, href: string) {
+		const hashIndex = href.indexOf('#');
+		if (hashIndex === -1) {
+			normalHeader.closeMenu();
+			return;
+		}
+
+		event.preventDefault();
+		normalHeader.closeMenu();
+
+		const id = href.slice(hashIndex + 1);
+		const el = document.getElementById(id);
+		if (el) {
+			el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			history.replaceState(null, '', `#${id}`);
+		}
+	}
 </script>
 
 <Drawer
 	bind:open={normalHeader.menuOpen}
 	direction="right"
+	modal={false}
 	shouldScaleBackground={false}
 	onOpenChange={(open) => {
 		if (open) {
@@ -116,7 +135,7 @@
 							href={item.href}
 							class={cn(navLinkClass, 'block w-full', active && navLinkActiveClass)}
 							aria-current={active ? 'page' : undefined}
-							onclick={normalHeader.closeMenu}
+							onclick={(e) => handleNavClick(e, item.href)}
 						>
 							{item.label}
 						</Link>
@@ -130,7 +149,7 @@
 				href={UNPROTECTED_PAGE_ENDPOINTS.BOOKING}
 				variant="default"
 				class="w-full bg-primary text-primary-foreground hover:bg-primary/90"
-				onclick={normalHeader.closeMenu}
+				onclick={(e: MouseEvent) => handleNavClick(e, UNPROTECTED_PAGE_ENDPOINTS.BOOKING)}
 			>
 				{m['Header.bookAppointment']()}
 			</Button>
