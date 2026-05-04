@@ -16,10 +16,9 @@
 	class="w-full min-w-0 max-w-full overflow-x-clip bg-background"
 	aria-labelledby="hero-heading"
 >
-	<div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-		<div class="grid min-h-[calc(100dvh-4rem)] grid-cols-1 items-center gap-0 lg:grid-cols-2">
-			<!-- Text — below image on mobile, left on desktop -->
-			<div class="order-2 flex flex-col justify-center py-12 pr-0 lg:order-1 lg:py-20 lg:pr-12">
+	<div class="grid min-h-[calc(100dvh-4rem)] grid-cols-1 items-center gap-0 lg:grid-cols-2">
+		<!-- Text — below image on mobile, left on desktop. Padding on lg keeps left edge aligned with the rest of the page (max-w-7xl + lg:px-8). -->
+		<div class="order-2 flex flex-col justify-center px-4 py-12 sm:px-6 lg:order-1 lg:py-20 lg:pl-[max(2rem,calc((100vw-80rem)/2+2rem))] lg:pr-12">
 				<!-- Eyebrow -->
 				<p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-secondary">
 					{m['RootPage.HeroSection.eyebrow']()}
@@ -62,27 +61,26 @@
 				</div>
 			</div>
 
-			<!-- Image — first on mobile, right on desktop -->
-			<div class="order-1 lg:order-2">
+		<!-- Image — first on mobile, right on desktop. Bleeds to the viewport's right edge. -->
+		<div class="order-1 lg:order-2">
+			<div
+				class="relative w-full overflow-hidden aspect-4/5 lg:aspect-auto lg:h-[calc(100dvh-4rem)]"
+				style="max-height: calc(100dvh - 4rem);"
+			>
+				<img
+					src="/root/hero-image-1280w.webp"
+					alt="bridal makeup Valencia – Teresa Guzmán Makeup"
+					class="h-full w-full object-cover object-center"
+					width="750"
+					height="950"
+					loading="eager"
+					fetchpriority="high"
+				/>
+				<!-- Smooth fade from page background on the left edge into the image -->
 				<div
-					class="relative w-full overflow-hidden lg:h-[calc(100dvh-4rem)]"
-					style="aspect-ratio: 4/5; max-height: calc(100dvh - 4rem);"
-				>
-					<div class="flex h-full w-full items-center justify-center px-4 text-center">
-						<p class="text-muted-foreground text-sm sm:text-base">{m['RootPage.HeroSection.imagePlaceholder']()}</p>
-					</div>
-					<!--
-					<img
-						src="/images/hero-bridal.jpg"
-						alt="bridal makeup Valencia – Teresa Guzmán Makeup"
-						class="h-full w-full object-cover object-top"
-						width="750"
-						height="950"
-						loading="eager"
-						fetchpriority="high"
-					/>
-					-->
-				</div>
+					class="pointer-events-none absolute inset-y-0 left-0 hidden w-1/3 bg-linear-to-r from-background to-transparent lg:block"
+					aria-hidden="true"
+				></div>
 			</div>
 		</div>
 	</div>
