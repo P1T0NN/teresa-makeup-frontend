@@ -38,24 +38,23 @@
 				</p>
 
 				<!-- CTAs -->
-				<div class="flex flex-wrap gap-3">
+				<div class="flex flex-wrap gap-4">
 					<Button
 						href={UNPROTECTED_PAGE_ENDPOINTS.BOOKING}
 						variant="default"
 						size="lg"
-						class="gap-2 bg-primary text-primary-foreground hover:bg-primary/90"
+						class="h-14 gap-2 rounded-xl px-8 text-base font-semibold shadow-md bg-primary text-primary-foreground hover:bg-primary/90 sm:text-lg"
 					>
-						<ArrowRightIcon class="size-4 shrink-0" aria-hidden="true" />
 						<span>{m['RootPage.HeroSection.bookAppointment']()}</span>
 					</Button>
-					
+
 					<Button
 						href={UNPROTECTED_PAGE_ENDPOINTS.PORTFOLIO}
 						variant="outline"
 						size="lg"
-						class="gap-2 border-primary text-primary hover:bg-primary/5"
+						class="h-14 gap-2 rounded-xl px-8 text-base font-semibold border-2 border-primary text-primary hover:bg-primary/5 sm:text-lg"
 					>
-						<ArrowRightIcon class="size-4 shrink-0" aria-hidden="true" />
+						<ArrowRightIcon class="size-5 shrink-0" aria-hidden="true" />
 						<span>{m['RootPage.HeroSection.viewPortfolio']()}</span>
 					</Button>
 				</div>

@@ -43,9 +43,6 @@
 </script>
 
 <script lang="ts">
-	// LIBRARIES
-	import { localizeHref } from '@/shared/lib/paraglide/runtime';
-
 	let {
 		class: className,
 		variant = "default",
@@ -64,7 +61,7 @@
 		bind:this={ref}
 		data-slot="button"
 		class={cn(buttonVariants({ variant, size }), className)}
-		href={disabled ? undefined : localizeHref(href)}
+		href={disabled ? undefined : href}
 		aria-disabled={disabled}
 		role={disabled ? "link" : undefined}
 		tabindex={disabled ? -1 : undefined}

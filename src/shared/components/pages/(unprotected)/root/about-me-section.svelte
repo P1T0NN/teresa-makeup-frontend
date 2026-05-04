@@ -1,6 +1,4 @@
 <script lang="ts">
-	import UserIcon from '@lucide/svelte/icons/user';
-
 	// LIBRARIES
 	import { m } from '@/shared/lib/paraglide/messages';
 
@@ -10,13 +8,14 @@
 
 <Section id="about" surface="muted" yPadding="lg" ariaLabelledby="about-heading">
 	<div class="grid grid-cols-1 items-start gap-10 lg:grid-cols-2 lg:gap-16">
-		<!-- TODO: Replace placeholder with Teresa's real headshot photo.
-		     Photo: portrait or professional shot, aspect-ratio square or 3/4.
-		     Alt text: "Teresa Guzmán, professional makeup artist in Valencia" -->
-		<div
-			class="mx-auto flex aspect-square w-full max-w-md items-center justify-center rounded-2xl bg-border lg:mx-0"
-		>
-			<UserIcon class="h-20 w-20 text-muted-foreground opacity-40" strokeWidth={1.5} aria-hidden="true" />
+		<div class="mx-auto aspect-square w-full max-w-md overflow-hidden rounded-2xl lg:mx-0">
+			<img
+				src="/root/about-me/tereza-picture-1280w.webp"
+				alt="Teresa Guzmán, professional makeup artist in Valencia"
+				class="h-full w-full object-cover"
+				loading="lazy"
+				decoding="async"
+			/>
 		</div>
 
 		<div class="w-full min-w-0 text-left">
