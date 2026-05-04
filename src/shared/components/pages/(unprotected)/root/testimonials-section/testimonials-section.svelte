@@ -1,4 +1,7 @@
 <script lang="ts">
+	// LIBRARIES
+	import { m } from '@/shared/lib/paraglide/messages';
+
 	// COMPONENTS
 	import Section from '@/shared/components/ui/section/section.svelte';
 	import TestimonialsSectionItem from './testimonials-section-item.svelte';
@@ -10,13 +13,13 @@
 <Section id="gallery" surface="background" yPadding="lg" ariaLabelledby="gallery-heading">
 	<div class="mb-12 text-center">
 		<p class="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-secondary">
-			Real clients
+			{m['RootPage.TestimonialsSection.eyebrow']()}
 		</p>
 		<h2
 			id="gallery-heading"
 			class="font-serif text-3xl font-medium italic text-primary sm:text-4xl"
 		>
-			What clients say
+			{m['RootPage.TestimonialsSection.title']()}
 		</h2>
 	</div>
 

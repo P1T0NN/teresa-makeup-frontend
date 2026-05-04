@@ -14,10 +14,102 @@
     },
 
     "CreatedByOmnilabs": {
-        "label": "Created by"
+        "label": "Created by",
+        "ariaLabel": "Created by OmniLabs — opens in a new tab"
+    },
+
+    "ServicesData": {
+        "bridalTrial": {
+            "label": "Bridal trial",
+            "title": "Bridal trial",
+            "description": "A personalised preview of your wedding-day makeup with skin prep designed to wear from first look until the last dance — includes colour direction, timings, and a clear plan toward the ceremony."
+        },
+        "socialMakeup": {
+            "label": "Social makeup",
+            "title": "Social makeup",
+            "description": "Radiant glam for dinners, celebrations, graduations, and guest weddings — camera-ready refinement that still feels unmistakably you."
+        },
+        "facialCleansing": {
+            "label": "Facial cleansing",
+            "title": "Facial cleansing",
+            "description": "Deep cleansing to revive dull or congested skin — restores clarity and softness so complexion-based makeup sits evenly and wears longer."
+        },
+        "maderotherapy": {
+            "label": "Maderotherapy",
+            "title": "Maderotherapy",
+            "description": "Wooden sculpting strokes to soften tension and support firmer contours on face or body — a soothing prelude to complexion work or bridal prep."
+        },
+        "lymphaticDrainage": {
+            "label": "Lymphatic drainage",
+            "title": "Lymphatic drainage",
+            "description": "Gentle drainage massage to minimise puffiness, refresh sluggish areas, and leave the face rested — ideal ahead of shoots, trials, or long travel."
+        }
+    },
+
+    "CompanyData": {
+        "description": "Professional makeup artist specializing in bridal and social makeup in Valencia.",
+        "reservationTitle": "Makeup Appointment"
+    },
+
+    "Footer": {
+        "contact": "Contact"
+    },
+
+    "Header": {
+        "services": "Services",
+        "gallery": "Gallery",
+        "about": "About",
+        "contact": "Contact",
+        "bookAppointment": "Book appointment",
+        "openMenu": "Open menu",
+        "closeMenu": "Close menu",
+        "mainNavigation": "Main navigation",
+        "mobileMainMenu": "Mobile main menu"
+    },
+
+    "CalendarWithTime": {
+        "todayNotBookable": "Today · not bookable",
+        "available": "Available",
+        "unavailableBooked": "Unavailable · booked",
+        "selected": "Selected",
+        "thisTimeHasAlreadyEnded": "This time has already ended",
+        "notAvailable": "Not available"
     },
 
     "RootPage": {
+        "HeroSection": {
+            "eyebrow": "Bridal specialist · Valencia",
+            "heading": "Your beauty, on the most important day of your life",
+            "subtext": "Custom makeup, long-wear skin prep, and refined techniques — from the trial to the big day.",
+            "bookAppointment": "Book Appointment",
+            "viewPortfolio": "View portfolio",
+            "imagePlaceholder": "Here goes image min. 1500px wide"
+        },
+        "ServicesSection": {
+            "eyebrow": "What I offer",
+            "title": "Services",
+            "bookAppointment": "Book Appointment"
+        },
+        "PortfolioSection": {
+            "eyebrow": "My work",
+            "title": "Portfolio",
+            "moreOnInstagram": "More on Instagram"
+        },
+        "AboutMeSection": {
+            "eyebrow": "The artist",
+            "title": "About",
+            "bio1": "Professional makeup artist with more than X years of experience specializing in bridal and social makeup in Valencia. Trained in the latest techniques, with a strong focus on longevity and skin care.",
+            "bio2": "My philosophy: every face is unique, every glance matters. I love creating looks that enhance your natural beauty and help you feel like yourself on the moments that matter most."
+        },
+        "TestimonialsSection": {
+            "eyebrow": "Real clients",
+            "title": "What clients say",
+            "starsOutOfFive": "{stars} out of 5 stars"
+        },
+        "WhatsappFab": {
+            "messageOnWhatsapp": "Message on WhatsApp",
+            "messageNow": "Message now"
+        },
         "BookingSection": {
             "bookYourAppointment": "Book your appointment",
             "chooseYourServiceDateAndPreferredTime": "Choose your service, date, and preferred time.",
@@ -39,6 +131,7 @@
             "confirmReservation": "Confirm Reservation"
         },
         "ContactSection": {
+            "contact": "Contact",
             "letsPlan": "Let's plan",
             "yourMakeup": "your makeup",
             "whetherItsAWeddingInValenciaASpecialEventOrATrialBeforeTheBigDay": "Whether it's a wedding in Valencia, a special event, or a trial before the big day — tell Teresa what you have in mind. She reads every message and usually replies within 24 hours.",
@@ -51,7 +144,8 @@
             "yourEmail": "you@example.com",
             "message": "Message",
             "placeholder": "Dates, venue, vibe, allergies — whatever helps Teresa prepare.",
-            "noSpam": "No spam — just a thoughtful reply when she is back at her desk."
+            "noSpam": "No spam — just a thoughtful reply when she is back at her desk.",
+            "sendMessage": "Send message"
         }
     },
 

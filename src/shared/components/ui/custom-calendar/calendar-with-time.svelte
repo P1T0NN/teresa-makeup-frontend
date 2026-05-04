@@ -5,6 +5,7 @@
 
 	// LIBRARIES
 	import { CalendarDate, getLocalTimeZone, today } from '@internationalized/date';
+	import { m } from '@/shared/lib/paraglide/messages';
 
 	// CONFIG
 	import { COMPANY_DATA } from '@/shared/constants';
@@ -15,7 +16,7 @@
 	import Calendar from '@/shared/components/ui/calendar/calendar.svelte';
 
 	// DATA
-	import { getServiceBookingDurationMs } from '@/shared/data/servicesData';
+	import { getServiceBookingDurationMs } from '@/features/booking/utils/serviceBookingDuration';
 
 	// UTILS
 	import { busyApiToMsIntervals, type BusyApiSlot } from '@/features/booking/utils/busyIntervals';
@@ -120,22 +121,22 @@
 			>
 				<span class="inline-flex items-center gap-1.5">
 					<span class="inline-block h-4 w-4 rounded-sm bg-amber-300 ring-1 ring-amber-950/10 dark:bg-amber-400 dark:ring-amber-950/25"></span>
-					Today · not bookable
+					{m['CalendarWithTime.todayNotBookable']()}
 				</span>
 
 				<span class="inline-flex items-center gap-1.5">
 					<span class="inline-block h-4 w-4 rounded-sm bg-green-100"></span>
-					Available
+					{m['CalendarWithTime.available']()}
 				</span>
 				
 				<span class="inline-flex items-center gap-1.5">
 					<span class="inline-block h-4 w-4 rounded-sm bg-red-100"></span>
-					Unavailable · booked
+					{m['CalendarWithTime.unavailableBooked']()}
 				</span>
 
 				<span class="inline-flex items-center gap-1.5">
 					<span class="inline-block h-4 w-4 rounded-sm bg-primary"></span>
-					Selected
+					{m['CalendarWithTime.selected']()}
 				</span>
 			</div>
 		</div>
@@ -153,9 +154,9 @@
 						variant={selectedTime === time ? 'default' : blocked ? 'destructive' : 'outline'}
 						disabled={blocked}
 						title={isPast
-							? 'This time has already ended'
+							? m['CalendarWithTime.thisTimeHasAlreadyEnded']()
 							: isBusy
-								? 'Not available'
+								? m['CalendarWithTime.notAvailable']()
 								: ''}
 						onclick={() => (selectedTime = time)}
 						class={cn('w-full shadow-none', blocked && 'disabled:opacity-100 line-through')}

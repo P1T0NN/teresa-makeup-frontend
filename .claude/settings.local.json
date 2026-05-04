@@ -3,7 +3,8 @@
     "allow": [
       "Bash(bun run *)",
       "Read(//home/ognjen/.bun/bin/**)",
-      "Read(//usr/local/bin/**)"
+      "Read(//usr/local/bin/**)",
+      "Bash(grep -rn \">[A-Z][a-zA-Z ]\\\\{3,\\\\}<\\\\|aria-label=\\\\\"[A-Z]\\\\|placeholder=\\\\\"[A-Z]\\\\|title=\\\\\"[A-Z]\" src --include=\"*.svelte\")"
     ]
   }
 }

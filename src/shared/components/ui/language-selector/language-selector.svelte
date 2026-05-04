@@ -21,19 +21,17 @@
 
 	let { variant = 'default' }: Props = $props();
 
-	/** Selectable locales only (`de` stays in Paraglide but is not offered here). */
 	const languages = [
-		{ name: 'English', locale: 'en' as const, code: 'EN' },
-		{ name: 'Español', locale: 'es' as const, code: 'ES' }
+		{ name: 'Español', locale: 'es' as const, code: 'ES' },
+		{ name: 'English', locale: 'en' as const, code: 'EN' }
 	] as const;
 
 	type AppLocale = (typeof languages)[number]['locale'];
 
 	function localeFromRouter(): AppLocale {
 		const l = getLocale();
-		if (l === 'es') return 'es';
-		// `de` (or unknown): show English in the control; URL may still be /de/ until user picks EN/ES.
-		return 'en';
+		if (l === 'en') return 'en';
+		return 'es';
 	}
 
 	let selectedLanguage = $state<AppLocale>(localeFromRouter());
@@ -70,7 +68,7 @@
 				variant === 'header' ? 'text-hero-overlay-foreground' : 'text-foreground'
 			)}
 		>
-			{languages.find((l) => l.locale === selectedLanguage)?.code ?? 'EN'}
+			{languages.find((l) => l.locale === selectedLanguage)?.code ?? 'ES'}
 		</span>
 	</SelectTrigger>
 

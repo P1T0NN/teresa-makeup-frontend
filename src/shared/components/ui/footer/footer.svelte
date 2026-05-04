@@ -1,4 +1,7 @@
 <script lang="ts">
+	// LIBRARIES
+	import { m } from '@/shared/lib/paraglide/messages';
+
 	// CONFIG
 	import { COMPANY_DATA, UNPROTECTED_PAGE_ENDPOINTS } from '@/shared/constants.js';
 
@@ -40,9 +43,9 @@
 			</div>
 
 			<!-- Contact links -->
-			<nav aria-label="Contact" class="flex flex-col gap-2">
+			<nav aria-label={m['Footer.contact']()} class="flex flex-col gap-2">
 				<p class="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-primary-foreground/50">
-					Contact
+					{m['Footer.contact']()}
 				</p>
 				
 				<a

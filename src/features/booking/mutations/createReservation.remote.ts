@@ -22,8 +22,8 @@ import { dateAtTimeMs, wallSalonLocalDateTimeString } from '@/shared/utils/dateU
 // SCHEMAS
 import { createReservationInputSchema, type typesCreateReservationOutput } from '@/features/booking/schemas/bookingSchemas';
 
-// DATA
-import { getServiceBookingDurationMs } from '@/shared/data/servicesData';
+// UTILS
+import { getServiceBookingDurationMs } from '@/features/booking/utils/serviceBookingDuration';
 
 // TYPES
 import type { typesApiResult } from '@/shared/types/types';

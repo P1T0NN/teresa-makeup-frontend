@@ -1,6 +1,9 @@
 <script lang="ts">
 	import UserIcon from '@lucide/svelte/icons/user';
 
+	// LIBRARIES
+	import { m } from '@/shared/lib/paraglide/messages';
+
 	// COMPONENTS
 	import Section from '@/shared/components/ui/section/section.svelte';
 </script>
@@ -18,27 +21,23 @@
 
 		<div class="w-full min-w-0 text-left">
 			<p class="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-secondary">
-				The artist
+				{m['RootPage.AboutMeSection.eyebrow']()}
 			</p>
 			<h2
 				id="about-heading"
 				class="font-serif mb-6 text-3xl font-medium italic text-primary sm:text-4xl"
 			>
-				About
+				{m['RootPage.AboutMeSection.title']()}
 			</h2>
 
 			<p class="text-base leading-relaxed text-foreground/70">
 				<!-- TODO: Replace with Teresa's real bio -->
-				Professional makeup artist with more than X years of experience specializing in bridal
-				and social makeup in Valencia. Trained in the latest techniques, with a strong focus on
-				longevity and skin care.
+				{m['RootPage.AboutMeSection.bio1']()}
 			</p>
 
 			<p class="mt-3 text-base leading-relaxed text-foreground/70">
 				<!-- TODO: Replace with Teresa's real story/differentiator -->
-				My philosophy: every face is unique, every glance matters. I love creating looks that
-				enhance your natural beauty and help you feel like yourself on the moments that matter
-				most.
+				{m['RootPage.AboutMeSection.bio2']()}
 			</p>
 		</div>
 	</div>

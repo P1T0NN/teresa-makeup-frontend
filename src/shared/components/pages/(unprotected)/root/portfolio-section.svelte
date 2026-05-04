@@ -1,4 +1,7 @@
 <script lang="ts">
+	// LIBRARIES
+	import { m } from '@/shared/lib/paraglide/messages';
+
 	// CONFIG
 	import { COMPANY_DATA } from '@/shared/constants.js';
 
@@ -26,12 +29,12 @@
 
 <Section id="portfolio" yPadding="lg" ariaLabelledby="portfolio-heading">
 	<div class="mb-10 text-center">
-		<p class="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-secondary">My work</p>
+		<p class="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-secondary">{m['RootPage.PortfolioSection.eyebrow']()}</p>
 		<h2
 			id="portfolio-heading"
 			class="font-serif text-3xl font-medium italic text-primary sm:text-4xl"
 		>
-			Portfolio
+			{m['RootPage.PortfolioSection.title']()}
 		</h2>
 	</div>
 
@@ -84,7 +87,7 @@
 			size="sm"
 			class="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground hover:text-foreground"
 		>
-			More on Instagram
+			{m['RootPage.PortfolioSection.moreOnInstagram']()}
 			<ArrowRightIcon class="size-3.5 text-secondary" aria-hidden="true" />
 		</Button>
 	</div>

@@ -1,4 +1,7 @@
 <script lang="ts">
+	// LIBRARIES
+	import { m } from '@/shared/lib/paraglide/messages';
+
 	// COMPONENTS
 	import * as Avatar from '@/shared/components/ui/avatar';
 
@@ -41,7 +44,7 @@
 			</Avatar.Root>
 
 			<div class="flex flex-col items-center gap-2">
-				<div class="flex gap-1 text-secondary" aria-label="{testimonial.stars} out of 5 stars">
+				<div class="flex gap-1 text-secondary" aria-label={m['RootPage.TestimonialsSection.starsOutOfFive']({ stars: testimonial.stars })}>
 					{#each [...Array(testimonial.stars).keys()] as index (index)}
 						<StarIcon class="size-3.5 shrink-0 fill-current" aria-hidden="true" />
 					{/each}
@@ -69,7 +72,7 @@
 			</Avatar.Root>
 
 			<div class="min-w-0 flex-1 pt-0.5">
-				<div class="flex gap-0.5 text-secondary" aria-label="{testimonial.stars} out of 5 stars">
+				<div class="flex gap-0.5 text-secondary" aria-label={m['RootPage.TestimonialsSection.starsOutOfFive']({ stars: testimonial.stars })}>
 					{#each [...Array(testimonial.stars).keys()] as index (index)}
 						<StarIcon class="size-3 shrink-0 fill-current" aria-hidden="true" />
 					{/each}

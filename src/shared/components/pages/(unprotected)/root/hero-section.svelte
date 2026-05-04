@@ -1,4 +1,7 @@
 <script lang="ts">
+	// LIBRARIES
+	import { m } from '@/shared/lib/paraglide/messages';
+
 	// CONFIG
 	import { UNPROTECTED_PAGE_ENDPOINTS } from '@/shared/constants.js';
 
@@ -19,7 +22,7 @@
 			<div class="order-2 flex flex-col justify-center py-12 pr-0 lg:order-1 lg:py-20 lg:pr-12">
 				<!-- Eyebrow -->
 				<p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-secondary">
-					Bridal specialist · Valencia
+					{m['RootPage.HeroSection.eyebrow']()}
 				</p>
 
 				<!-- H1 — Cormorant Garamond italic -->
@@ -27,12 +30,12 @@
 					id="hero-heading"
 					class="font-serif mb-6 text-4xl font-medium italic leading-tight text-primary sm:text-5xl lg:text-6xl"
 				>
-					Your beauty, on the most important day of your life
+					{m['RootPage.HeroSection.heading']()}
 				</h1>
 
 				<!-- Subtext -->
 				<p class="mb-8 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg">
-					Custom makeup, long-wear skin prep, and refined techniques — from the trial to the big day.
+					{m['RootPage.HeroSection.subtext']()}
 				</p>
 
 				<!-- CTAs -->
@@ -44,7 +47,7 @@
 						class="gap-2 bg-primary text-primary-foreground hover:bg-primary/90"
 					>
 						<ArrowRightIcon class="size-4 shrink-0" aria-hidden="true" />
-						<span>Book Appointment</span>
+						<span>{m['RootPage.HeroSection.bookAppointment']()}</span>
 					</Button>
 					
 					<Button
@@ -54,7 +57,7 @@
 						class="gap-2 border-primary text-primary hover:bg-primary/5"
 					>
 						<ArrowRightIcon class="size-4 shrink-0" aria-hidden="true" />
-						<span>View portfolio</span>
+						<span>{m['RootPage.HeroSection.viewPortfolio']()}</span>
 					</Button>
 				</div>
 			</div>
@@ -66,7 +69,7 @@
 					style="aspect-ratio: 4/5; max-height: calc(100dvh - 4rem);"
 				>
 					<div class="flex h-full w-full items-center justify-center px-4 text-center">
-						<p class="text-muted-foreground text-sm sm:text-base">Here goes image min. 1500px wide</p>
+						<p class="text-muted-foreground text-sm sm:text-base">{m['RootPage.HeroSection.imagePlaceholder']()}</p>
 					</div>
 					<!--
 					<img

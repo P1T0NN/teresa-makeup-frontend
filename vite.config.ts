@@ -15,14 +15,13 @@ export default defineConfig({
 			outdir: './src/shared/lib/paraglide',
             strategy: ['url', 'baseLocale'],
             disableAsyncLocalStorage: true,
-			// Every locale is prefixed (including base): /en/..., /de/..., /es/... — no unprefixed URLs
+			// Every locale is prefixed (including base): /es/..., /en/... — no unprefixed URLs
 			urlPatterns: [
 				{
 					pattern: ':protocol://:domain(.*)::port?/:path(.*)?',
 					localized: [
-						['en', ':protocol://:domain(.*)::port?/en/:path(.*)?'],
-						['de', ':protocol://:domain(.*)::port?/de/:path(.*)?'],
-						['es', ':protocol://:domain(.*)::port?/es/:path(.*)?']
+						['es', ':protocol://:domain(.*)::port?/es/:path(.*)?'],
+						['en', ':protocol://:domain(.*)::port?/en/:path(.*)?']
 					]
 				}
 			]

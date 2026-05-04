@@ -1,8 +1,8 @@
 // CONFIG
 import { BOOKING_SETTINGS } from '@/shared/config';
 
-// DATA
-import { getServiceBookingDurationMinutes } from '@/shared/data/servicesData';
+// UTILS
+import { getServiceBookingDurationMinutes } from '@/features/booking/utils/serviceBookingDuration';
 
 // TYPES
 import type { typesServiceOptionId } from '@/features/services/types/servicesTypes';

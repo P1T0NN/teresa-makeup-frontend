@@ -10,7 +10,8 @@
 	import RadioGroupSelection from '@/shared/components/ui/radio-group-selection/radio-group-selection.svelte';
 
 	// DATA
-	import { getServiceBookingDurationMinutes, serviceOptions } from '@/shared/data/servicesData';
+	import { serviceOptions } from '@/shared/data/servicesData';
+	import { getServiceBookingDurationMinutes } from '@/features/booking/utils/serviceBookingDuration';
 
 	const bookingServiceOptions = $derived(
 		serviceOptions.map((o) => {

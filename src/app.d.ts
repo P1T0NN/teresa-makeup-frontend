@@ -5,9 +5,7 @@ import type { Doc } from '@/convex/_generated/dataModel';
 declare global {
 	namespace App {
 		// interface Error {}
-		interface Locals {
-			user: Doc<'users'> | null;
-		}
+		//interface Locals {}
 		interface PageData {
 			/** Shown in app shells (e.g. `SiteHeader`) when set by a route `load`. */
 			pageTitle?: string;

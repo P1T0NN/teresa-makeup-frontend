@@ -2,13 +2,160 @@
 	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"example_message": "Hola {username}",
 
+	"SEO": {
+		"RootPage": {
+			"title": "Maquilladora Profesional en Valencia · Especialista en Novias – Teresa Guzmán Makeup",
+			"description": "Maquillaje de novia, social y de efectos especiales en Valencia. Teresa Guzmán: preparación de piel de larga duración, servicio a domicilio y prueba personalizada. Reserva tu cita."
+		},
+		"ReservationConfirmationPage": {
+			"title": "Cita Confirmada · Teresa Guzmán Makeup",
+			"description": "Tu cita de maquillaje con Teresa Guzmán ha sido confirmada."
+		}
+	},
+
 	"CreatedByOmnilabs": {
-		"label": "Creado por"
+		"label": "Creado por",
+		"ariaLabel": "Creado por OmniLabs — se abre en una nueva pestaña"
+	},
+
+	"ServicesData": {
+		"bridalTrial": {
+			"label": "Prueba de novia",
+			"title": "Prueba de novia",
+			"description": "Una previsualización personalizada de tu maquillaje del día de la boda, con preparación de piel diseñada para durar desde el primer encuentro hasta el último baile — incluye orientación de color, tiempos y un plan claro hasta la ceremonia."
+		},
+		"socialMakeup": {
+			"label": "Maquillaje social",
+			"title": "Maquillaje social",
+			"description": "Glamour radiante para cenas, celebraciones, graduaciones y bodas como invitada — refinamiento listo para la cámara que sigue sintiéndose inconfundiblemente tuyo."
+		},
+		"facialCleansing": {
+			"label": "Limpieza facial",
+			"title": "Limpieza facial",
+			"description": "Limpieza profunda para revivir la piel apagada o congestionada — devuelve claridad y suavidad para que el maquillaje de tez asiente de forma uniforme y dure más."
+		},
+		"maderotherapy": {
+			"label": "Maderoterapia",
+			"title": "Maderoterapia",
+			"description": "Movimientos de escultura con madera para suavizar la tensión y favorecer un contorno más firme en rostro o cuerpo — un preludio relajante al trabajo de tez o a la preparación nupcial."
+		},
+		"lymphaticDrainage": {
+			"label": "Drenaje linfático",
+			"title": "Drenaje linfático",
+			"description": "Masaje de drenaje suave para minimizar la hinchazón, refrescar zonas apagadas y dejar el rostro descansado — ideal antes de sesiones, pruebas o viajes largos."
+		}
+	},
+
+	"CompanyData": {
+		"description": "Maquilladora profesional especializada en maquillaje de novia y social en Valencia.",
+		"reservationTitle": "Cita de Maquillaje"
+	},
+
+	"Footer": {
+		"contact": "Contacto"
+	},
+
+	"Header": {
+		"services": "Servicios",
+		"gallery": "Galería",
+		"about": "Sobre mí",
+		"contact": "Contacto",
+		"bookAppointment": "Reservar cita",
+		"openMenu": "Abrir menú",
+		"closeMenu": "Cerrar menú",
+		"mainNavigation": "Navegación principal",
+		"mobileMainMenu": "Menú principal móvil"
+	},
+
+	"CalendarWithTime": {
+		"todayNotBookable": "Hoy · no reservable",
+		"available": "Disponible",
+		"unavailableBooked": "No disponible · reservado",
+		"selected": "Seleccionado",
+		"thisTimeHasAlreadyEnded": "Esta hora ya ha finalizado",
+		"notAvailable": "No disponible"
 	},
 
 	"RootPage": {
+		"HeroSection": {
+			"eyebrow": "Especialista en novias · Valencia",
+			"heading": "Tu belleza, en el día más importante de tu vida",
+			"subtext": "Maquillaje personalizado, preparación de piel de larga duración y técnicas refinadas — desde la prueba hasta el gran día.",
+			"bookAppointment": "Reservar cita",
+			"viewPortfolio": "Ver portafolio",
+			"imagePlaceholder": "Aquí va una imagen de mín. 1500px de ancho"
+		},
+		"ServicesSection": {
+			"eyebrow": "Lo que ofrezco",
+			"title": "Servicios",
+			"bookAppointment": "Reservar cita"
+		},
+		"PortfolioSection": {
+			"eyebrow": "Mi trabajo",
+			"title": "Portafolio",
+			"moreOnInstagram": "Más en Instagram"
+		},
+		"AboutMeSection": {
+			"eyebrow": "La artista",
+			"title": "Sobre mí",
+			"bio1": "Maquilladora profesional con más de X años de experiencia, especializada en maquillaje de novia y social en Valencia. Formada en las últimas técnicas, con un fuerte enfoque en la duración y el cuidado de la piel.",
+			"bio2": "Mi filosofía: cada rostro es único, cada mirada importa. Me encanta crear looks que realcen tu belleza natural y te ayuden a sentirte tú misma en los momentos que más importan."
+		},
+		"TestimonialsSection": {
+			"eyebrow": "Clientas reales",
+			"title": "Lo que dicen las clientas",
+			"starsOutOfFive": "{stars} de 5 estrellas"
+		},
+		"WhatsappFab": {
+			"messageOnWhatsapp": "Enviar mensaje por WhatsApp",
+			"messageNow": "Escríbeme ahora"
+		},
 		"BookingSection": {
-			"phoneDescription": "Recomendado, no obligatorio: facilita que Teresa pueda contactarte si necesitas cambiar o cancelar la cita. Si añades un número, usa formato internacional (+prefijo); preferiblemente un número con WhatsApp si lo usas."
+			"bookYourAppointment": "Reserva tu cita",
+			"chooseYourServiceDateAndPreferredTime": "Elige tu servicio, fecha y hora preferida.",
+			"selectService": "Selecciona el servicio",
+			"chooseOneOption": "Elige una opción",
+			"serviceSelection": "Selección de servicio",
+			"yourMeetingIsBookedFor": "Tu cita está reservada para",
+			"at": "a las",
+			"youHaveNotChosenTheBookingDateYet": "Aún no has elegido la fecha de la reserva",
+			"yourDetails": "Tus datos",
+			"weWillUseThisToConfirmYourReservation": "Los usaremos para confirmar tu reserva",
+			"name": "Nombre",
+			"yourFullName": "Tu nombre completo",
+			"email": "Correo electrónico",
+			"yourEmail": "tu@ejemplo.com",
+			"phone": "Teléfono",
+			"optional": "Opcional",
+			"phoneDescription": "Recomendado, no obligatorio: facilita que Teresa pueda contactarte si necesitas cambiar o cancelar la cita. Si añades un número, usa formato internacional (+prefijo); preferiblemente un número con WhatsApp si lo usas.",
+			"confirmReservation": "Confirmar reserva"
+		},
+		"ContactSection": {
+			"contact": "Contacto",
+			"letsPlan": "Planeemos",
+			"yourMakeup": "tu maquillaje",
+			"whetherItsAWeddingInValenciaASpecialEventOrATrialBeforeTheBigDay": "Ya sea una boda en Valencia, un evento especial o una prueba antes del gran día — cuéntale a Teresa lo que tienes en mente. Lee cada mensaje y suele responder en menos de 24 horas.",
+			"preferEmail": "¿Prefieres el correo?",
+			"sendAMessage": "Envía un mensaje",
+			"description": "Comparte tu consulta y Teresa te responderá lo antes posible — normalmente en menos de 24 horas.",
+			"yourName": "Tu nombre",
+			"yourFullName": "Tu nombre completo",
+			"email": "Correo electrónico",
+			"yourEmail": "tu@ejemplo.com",
+			"message": "Mensaje",
+			"placeholder": "Fechas, lugar, estilo, alergias — lo que ayude a Teresa a prepararse.",
+			"noSpam": "Sin spam — solo una respuesta cuidada cuando vuelva a su escritorio.",
+			"sendMessage": "Enviar mensaje"
 		}
+	},
+
+	"ReservationConfirmationPage": {
+		"reservationConfirmed": "Reserva confirmada",
+		"youAreAllSet": "Todo listo.",
+		"teresaWillBeInTouch": "Teresa se pondrá en contacto contigo en breve con la confirmación. Mientras tanto — relájate, estás en buenas manos.",
+		"backToSite": "Volver al sitio",
+		"messageTeresa": "Escribir a Teresa",
+		"whileYouWait": "mientras esperas",
+		"followTeresaForBridalInspiration": "Sigue a Teresa para inspiración nupcial"
 	}
 }

@@ -1,4 +1,7 @@
 <script lang="ts">
+	// LIBRARIES
+	import { m } from '@/shared/lib/paraglide/messages';
+
 	// CONFIG
 	import { UNPROTECTED_PAGE_ENDPOINTS } from '@/shared/constants.js';
 
@@ -14,13 +17,13 @@
 	<!-- Section header -->
 	<div class="mb-16 text-center">
 		<p class="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-secondary">
-			What I offer
+			{m['RootPage.ServicesSection.eyebrow']()}
 		</p>
 		<h2
 			id="services-heading"
 			class="font-serif text-3xl font-medium italic text-primary sm:text-4xl"
 		>
-			Services
+			{m['RootPage.ServicesSection.title']()}
 		</h2>
 	</div>
 
@@ -62,7 +65,7 @@
 			size="lg"
 			class="bg-primary px-10 text-primary-foreground hover:bg-primary/90"
 		>
-			Book Appointment
+			{m['RootPage.ServicesSection.bookAppointment']()}
 		</Button>
 	</div>
 </Section>

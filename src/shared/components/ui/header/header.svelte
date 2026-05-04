@@ -7,6 +7,7 @@
 
 	// LIBRARIES
 	import { deLocalizeUrl } from '@/shared/lib/paraglide/runtime';
+	import { m } from '@/shared/lib/paraglide/messages';
 
 	// CLASSES
 	import {
@@ -90,7 +91,7 @@
 			{/if}
 		</div>
 
-		<nav class="hidden min-w-0 flex-1 justify-center lg:flex" aria-label="Main navigation">
+		<nav class="hidden min-w-0 flex-1 justify-center lg:flex" aria-label={m['Header.mainNavigation']()}>
 			<ul class="flex max-w-full min-w-0 flex-wrap items-center justify-center gap-1">
 				{#each navItems as item (item.href)}
 					{@const active = isNavItemActive(pathnameLogical, item.href)}
@@ -115,7 +116,7 @@
 				size="lg"
 				class="hidden bg-primary text-primary-foreground hover:bg-primary/90 lg:inline-flex"
 			>
-				Book appointment
+				{m['Header.bookAppointment']()}
 			</Button>
 
 			<HeaderMobile {hasLogo} />

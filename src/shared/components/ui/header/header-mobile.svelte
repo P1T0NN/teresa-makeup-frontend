@@ -8,6 +8,7 @@
 
 	// LIBRARIES
 	import { deLocalizeUrl } from '@/shared/lib/paraglide/runtime';
+	import { m } from '@/shared/lib/paraglide/messages';
 
 	// CLASSES
 	import {
@@ -67,7 +68,7 @@
 					props.class as ClassValue
 				)}
 				aria-controls="site-mobile-nav"
-				aria-label={normalHeader.menuOpen ? 'Close menu' : 'Open menu'}
+				aria-label={normalHeader.menuOpen ? m['Header.closeMenu']() : m['Header.openMenu']()}
 			>
 				{#if normalHeader.menuOpen}
 					<XIcon class="size-5" />
@@ -98,14 +99,14 @@
 					variant="ghost"
 					size="icon"
 					class="shrink-0 touch-manipulation"
-					aria-label="Close menu"
+					aria-label={m['Header.closeMenu']()}
 				>
 					<XIcon class="size-5" />
 				</Button>
 			</DrawerClose>
 		</div>
 
-		<nav aria-label="Mobile main menu">
+		<nav aria-label={m['Header.mobileMainMenu']()}>
 			<ul class="flex flex-col gap-1">
 				{#each navItems as item, i (item.href)}
 					{@const active = isNavItemActive(pathnameLogical, item.href)}
@@ -131,7 +132,7 @@
 				class="w-full bg-primary text-primary-foreground hover:bg-primary/90"
 				onclick={normalHeader.closeMenu}
 			>
-				Book appointment
+				{m['Header.bookAppointment']()}
 			</Button>
 		</div>
 	</DrawerContent>

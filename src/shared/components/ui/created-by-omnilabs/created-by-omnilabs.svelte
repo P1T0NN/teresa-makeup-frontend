@@ -32,7 +32,7 @@
 		'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-foreground/40 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground',
 		className
 	)}
-	aria-label="Created by OmniLabs — opens in a new tab"
+	aria-label={m['CreatedByOmnilabs.ariaLabel']()}
 >
 	<span
 		class="text-[0.625rem] font-semibold uppercase tracking-[0.28em] text-primary-foreground/50 transition-colors group-hover:text-primary-foreground/70"

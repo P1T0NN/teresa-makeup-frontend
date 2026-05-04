@@ -1,4 +1,7 @@
 <script lang="ts">
+	// LIBRARIES
+	import { m } from '@/shared/lib/paraglide/messages';
+
 	// CONFIG
 	import { COMPANY_DATA } from '@/shared/constants.js';
 
@@ -24,8 +27,8 @@
 	rel="noopener noreferrer"
 	onclick={handleClick}
 	class="lg:hidden fixed bottom-5 right-5 z-50 flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-3 shadow-lg transition-transform hover:scale-105 active:scale-95"
-	aria-label="Message on WhatsApp"
+	aria-label={m['RootPage.WhatsappFab.messageOnWhatsapp']()}
 >
 	<MessageCircleIcon class="h-5 w-5 shrink-0 text-white" strokeWidth={2} aria-hidden="true" />
-	<span class="text-sm font-semibold text-white">Message now</span>
+	<span class="text-sm font-semibold text-white">{m['RootPage.WhatsappFab.messageNow']()}</span>
 </a>

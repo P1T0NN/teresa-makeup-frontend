@@ -11,7 +11,7 @@
 </script>
 
 <div>
-	<p class="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-primary-foreground/60">Contact</p>
+	<p class="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-primary-foreground/60">{m['RootPage.ContactSection.contact']()}</p>
 
 	<h2
 		id="contact-heading"

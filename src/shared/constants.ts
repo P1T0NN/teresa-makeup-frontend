@@ -1,7 +1,10 @@
+// LIBRARIES
+import { m } from "./lib/paraglide/messages";
+
 export const COMPANY_DATA = {
 	NAME: 'Teresa Guzmán Makeup',
 	LOGO: '/logo/logo.webp',
-	DESCRIPTION: 'Professional makeup artist specializing in bridal and social makeup in Valencia.',
+	DESCRIPTION: m['CompanyData.description'](),
 	EMAIL: 'hola@teresamakeup.es',
 	EMAIL_HREF: 'mailto:hola@teresamakeup.es',
 	PHONE_DISPLAY: '+34 XXX XXX XXX',
@@ -9,7 +12,7 @@ export const COMPANY_DATA = {
 	INSTAGRAM: '@teresamakeup.es',
 	INSTAGRAM_URL: 'https://www.instagram.com/teresamakeup.es/',
 	WHATSAPP_NUMBER: '+34692116800',
-	RESERVATION_TITLE: 'Makeup Appointment',
+	RESERVATION_TITLE: m['CompanyData.reservationTitle'](),
 	DOMAIN: 'teresamakeup.es',
 
 	/**
