@@ -50,8 +50,8 @@
 
 	const todayDate = today(getLocalTimeZone());
 
-	/** Same-day bookings are not allowed — earliest selectable calendar day is tomorrow */
-	const earliestBookingDate = todayDate.add({ days: 1 });
+	/** Same-day and next-day bookings are not allowed — earliest selectable calendar day is the day after tomorrow */
+	const earliestBookingDate = todayDate.add({ days: 2 });
 
 	const tz = getLocalTimeZone();
 
@@ -85,8 +85,8 @@
 
 	$effect(() => {
 		if (value === undefined) return;
-		// Booking must be strictly after calendar “today”; clear stale same-day selections
-		if (value.compare(todayDate) <= 0) {
+		// Booking must be on/after earliestBookingDate; clear stale too-soon selections
+		if (value.compare(earliestBookingDate) < 0) {
 			value = undefined;
 			selectedTime = null;
 		}

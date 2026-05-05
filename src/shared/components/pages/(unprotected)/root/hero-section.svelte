@@ -16,7 +16,7 @@
 	class="w-full min-w-0 max-w-full overflow-x-clip bg-background"
 	aria-labelledby="hero-heading"
 >
-	<div class="grid min-h-[calc(100dvh-4rem)] grid-cols-1 items-center gap-0 lg:grid-cols-2">
+	<div class="grid grid-cols-1 gap-0 lg:min-h-[calc(100dvh-4rem)] lg:grid-cols-2 lg:items-center">
 		<!-- Text — below image on mobile, left on desktop. Padding on lg keeps left edge aligned with the rest of the page (max-w-7xl + lg:px-8). -->
 		<div class="order-2 flex flex-col justify-center px-4 py-12 sm:px-6 lg:order-1 lg:py-20 lg:pl-[max(2rem,calc((100vw-80rem)/2+2rem))] lg:pr-12">
 				<!-- Eyebrow -->
@@ -63,13 +63,13 @@
 		<!-- Image — first on mobile, right on desktop. Bleeds to the viewport's right edge. -->
 		<div class="order-1 lg:order-2">
 			<div
-				class="relative w-full overflow-hidden aspect-4/5 lg:aspect-auto lg:h-[calc(100dvh-4rem)]"
+				class="relative w-full overflow-hidden aspect-[8/7] lg:aspect-auto lg:h-[calc(100dvh-4rem)]"
 				style="max-height: calc(100dvh - 4rem);"
 			>
 				<img
 					src="/root/hero-image-1280w.webp"
 					alt="bridal makeup Valencia – Teresa Guzmán Makeup"
-					class="h-full w-full object-cover object-center"
+					class="h-full w-full object-cover object-top lg:object-center"
 					width="750"
 					height="950"
 					loading="eager"
