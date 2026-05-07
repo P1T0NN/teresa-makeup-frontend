@@ -4,6 +4,8 @@ import { command } from '$app/server';
 
 // LIBRARIES
 import { Resend } from 'resend';
+import { checkBotId } from 'botid/server';
+import { m } from '@/shared/lib/paraglide/messages';
 
 // CONFIG
 import { COMPANY_DATA } from '@/shared/constants';
@@ -11,20 +13,33 @@ import { COMPANY_DATA } from '@/shared/constants';
 // SCHEMAS
 import { sendContactFormEmailSchema } from '@/features/contact/schemas/contactSchemas';
 
+// TEMPLATES
+import { buildContactFormEmail } from '@/features/contact/templates/contactFormEmailTemplate';
+
 const resend = new Resend(RESEND_API_KEY);
 
 export const sendContactFormEmail = command(
     sendContactFormEmailSchema,
     async (data) => {
+		const verification = await checkBotId();
+
+		if (verification.isBot) {
+			return {
+				success: false,
+				message: 'Access restricted',
+				data: null
+			};
+		}
+
+		const { subject, html, text, replyTo } = buildContactFormEmail(data);
+
 		const { error } = await resend.emails.send({
-			from: `Website Contact Form <noreply@${COMPANY_DATA.DOMAIN}>`,
+			from: `Formulario de Contacto Web <${COMPANY_DATA.RESEND_EMAIL}>`,
 			to: [COMPANY_DATA.EMAIL],
-			subject: 'Website contact form',
-			html: `
-                <p>Name: ${data.name}</p>
-                <p>Email: ${data.email}</p>
-                <p>Message: ${data.message}</p>
-            `
+			replyTo,
+			subject,
+			html,
+			text
 		});
 
 		if (error) {
@@ -37,7 +52,7 @@ export const sendContactFormEmail = command(
 
 		return {
             success: true,
-            message: 'Email sent successfully',
+            message: m["GenericMessages.EMAIL_SENT_SUCCESSFULLY"](),
             data: null,
         }
     }

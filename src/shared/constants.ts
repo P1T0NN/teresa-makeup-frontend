@@ -6,14 +6,14 @@ export const COMPANY_DATA = {
 	LOGO: '/logo/logo.webp',
 	DESCRIPTION: m['CompanyData.description'](),
 	EMAIL: ' teresaguzmanmakeup@gmail.com',
-	EMAIL_HREF: 'mailto:teresaguzmanmakeup@gmail.coms',
+	EMAIL_HREF: 'mailto:teresaguzmanmakeup@gmail.com',
 	PHONE_DISPLAY: '+34 692 11 68 00',
 	PHONE_HREF: 'tel:+34692116800',
 	INSTAGRAM: '@teresamakeup.es',
 	INSTAGRAM_URL: 'https://www.instagram.com/teresamakeup.es/',
 	WHATSAPP_NUMBER: '+34692116800',
 	RESERVATION_TITLE: m['CompanyData.reservationTitle'](),
-	DOMAIN: 'teresamakeup.es',
+	RESEND_EMAIL: 'noreply@teresamakeup.es',
 
 	/**
 	 * IANA timezone of the salon. Google Calendar events are reinterpreted in this

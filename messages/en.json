@@ -157,5 +157,9 @@
         "messageTeresa": "Message Teresa",
         "whileYouWait": "while you wait",
         "followTeresaForBridalInspiration": "Follow Teresa for bridal inspiration"
+    },
+
+    "GenericMessages": {
+        "EMAIL_SENT_SUCCESSFULLY": "Email sent successfully"
     }
 }

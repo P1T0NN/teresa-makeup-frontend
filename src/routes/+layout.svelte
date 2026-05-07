@@ -6,6 +6,11 @@
 	import { beforeNavigate } from '$app/navigation';
 	import { updated } from '$app/state';
 	import { onMount } from 'svelte';
+	import { dev } from '$app/environment';
+
+	// LIBRARIES
+	import { injectAnalytics } from '@vercel/analytics/sveltekit';
+	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 
 	// COMPONENTS
 	import { Toaster } from '@/shared/components/ui/sonner';
@@ -13,6 +18,9 @@
 	import Footer from '@/shared/components/ui/footer/footer.svelte';
 
 	let { children } = $props();
+
+	injectAnalytics({ mode: dev ? 'development' : 'production' });
+	injectSpeedInsights();
 
 	// If a navigation happens after a new version is deployed, force a full reload
 	beforeNavigate(({ willUnload, to }) => {

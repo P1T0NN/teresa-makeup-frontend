@@ -44,7 +44,7 @@
 			"title": "Drenaje linfático",
 			"description": "Masaje de drenaje suave para minimizar la hinchazón, refrescar zonas apagadas y dejar el rostro descansado — ideal antes de sesiones, pruebas o viajes largos."
 		}
-	},
+	},	
 
 	"CompanyData": {
 		"description": "Maquilladora profesional especializada en maquillaje de novia y social en Valencia.",
@@ -157,5 +157,9 @@
 		"messageTeresa": "Escribir a Teresa",
 		"whileYouWait": "mientras esperas",
 		"followTeresaForBridalInspiration": "Sigue a Teresa para inspiración nupcial"
+	},
+
+	"GenericMessages": {
+		"EMAIL_SENT_SUCCESSFULLY": "Correo enviado correctamente"
 	}
 }
