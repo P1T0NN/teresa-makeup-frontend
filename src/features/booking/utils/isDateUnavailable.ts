@@ -16,11 +16,14 @@ export function createIsDateUnavailable(
 	timeZone: string,
 	slotDurationMs: number
 ): (date: DateValue) => boolean {
+	const isSunday = (date: DateValue) => date.toDate(timeZone).getDay() === 0;
+
 	if (intervals.length === 0) {
-		return () => false;
+		return (date: DateValue) => isSunday(date);
 	}
 
 	return (date: DateValue) => {
+		if (isSunday(date)) return true;
 		for (const time of candidateStartTimeSlots) {
 			const slotStart = dateAtTimeMs(date, time, timeZone);
 			if (!isOverlap(slotStart, slotStart + slotDurationMs, intervals)) {

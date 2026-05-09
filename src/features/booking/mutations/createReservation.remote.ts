@@ -1,9 +1,16 @@
 // SVELTEKIT IMPORTS
 import { command } from '$app/server';
-import { GOOGLE_CALENDAR_ID } from '$env/static/private';
+import {
+	GOOGLE_CALENDAR_ID,
+	RESEND_API_KEY,
+	CALLMEBOT_PHONE,
+	CALLMEBOT_API_KEY
+} from '$env/static/private';
 
 // LIBRARIES
 import { CalendarDate } from '@internationalized/date';
+import { Resend } from 'resend';
+import { m } from '@/shared/lib/paraglide/messages';
 
 // CONFIG
 import { COMPANY_DATA } from '@/shared/constants';
@@ -22,6 +29,10 @@ import { dateAtTimeMs, wallSalonLocalDateTimeString } from '@/shared/utils/dateU
 // SCHEMAS
 import { createReservationInputSchema, type typesCreateReservationOutput } from '@/features/booking/schemas/bookingSchemas';
 
+// TEMPLATES
+import { buildReservationEmail } from '@/features/booking/templates/reservationEmailTemplate';
+import { buildReservationWhatsappMessage } from '@/features/booking/templates/reservationWhatsappMessage';
+
 // UTILS
 import { getServiceBookingDurationMs } from '@/features/booking/utils/serviceBookingDuration';
 
@@ -35,7 +46,7 @@ export const createReservation = command(
 		if (!GOOGLE_CALENDAR_ID) {
 			return {
 				success: false,
-				message: 'Calendar is not configured.'
+				message: m['GenericMessages.CALENDAR_NOT_CONFIGURED']()
 			};
 		}
 
@@ -52,7 +63,7 @@ export const createReservation = command(
 		if (slotEnd <= now) {
 			return {
 				success: false,
-				message: 'This time slot has already passed.'
+				message: m['GenericMessages.TIME_SLOT_ALREADY_PASSED']()
 			};
 		}
 
@@ -66,7 +77,7 @@ export const createReservation = command(
 		if (isOverlap(slotStart, slotEnd, intervals)) {
 			return {
 				success: false,
-				message: 'This slot is no longer available. Please choose another time.'
+				message: m['GenericMessages.SLOT_NO_LONGER_AVAILABLE']()
 			};
 		}
 
@@ -96,15 +107,41 @@ export const createReservation = command(
 			console.error('Google Calendar insert failed', e);
 			return {
 				success: false,
-				message: 'Could not confirm your reservation. Please try again later.'
+				message: m['GenericMessages.RESERVATION_NOT_CONFIRMED']()
 			};
+		}
+
+		try {
+			const resend = new Resend(RESEND_API_KEY);
+			const { subject, html, text, replyTo } = buildReservationEmail(payload, slotStart);
+			await resend.emails.send({
+				from: `Reservas Web <${COMPANY_DATA.RESEND_EMAIL}>`,
+				to: [COMPANY_DATA.EMAIL.trim()],
+				replyTo,
+				subject,
+				html,
+				text
+			});
+		} catch (e) {
+			console.error('Reservation notification email failed', e);
+		}
+
+		try {
+			const text = buildReservationWhatsappMessage(payload, slotStart);
+			const url = `https://api.callmebot.com/whatsapp.php?phone=${encodeURIComponent(CALLMEBOT_PHONE)}&text=${encodeURIComponent(text)}&apikey=${encodeURIComponent(CALLMEBOT_API_KEY)}`;
+			const res = await fetch(url);
+			if (!res.ok) {
+				console.error('Reservation WhatsApp notification failed', res.status, await res.text());
+			}
+		} catch (e) {
+			console.error('Reservation WhatsApp notification failed', e);
 		}
 
 		await getAvailability().refresh();
 
 		const result: typesApiResult<typesCreateReservationData> = {
 			success: true,
-			message: 'Your reservation is confirmed.'
+			message: m['GenericMessages.RESERVATION_CONFIRMED']()
 		};
 
 		if (eventId !== undefined) {

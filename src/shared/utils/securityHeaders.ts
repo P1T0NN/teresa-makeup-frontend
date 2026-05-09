@@ -9,7 +9,7 @@
 export function getContentSecurityPolicy(): string {
 	return [
 		"default-src 'self'",
-		"script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:",
+		"script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://va.vercel-scripts.com",
 		"worker-src 'self' blob:",
 		"style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
 		// blob: — e.g. <img src={URL.createObjectURL(file)} /> for local upload previews

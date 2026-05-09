@@ -24,6 +24,11 @@
             "title": "Bridal trial",
             "description": "A personalised preview of your wedding-day makeup with skin prep designed to wear from first look until the last dance — includes colour direction, timings, and a clear plan toward the ceremony."
         },
+        "bridalMakeup": {
+            "label": "Bridal makeup",
+            "title": "Bridal makeup",
+            "description": "Your wedding-day look from start to finish — long-wear skin prep, refined makeup, and unhurried timing so you arrive at the ceremony feeling like yourself, on time, and ready for every photograph."
+        },
         "socialMakeup": {
             "label": "Social makeup",
             "title": "Social makeup",
@@ -38,11 +43,6 @@
             "label": "Maderotherapy",
             "title": "Maderotherapy",
             "description": "Wooden sculpting strokes to soften tension and support firmer contours on face or body — a soothing prelude to complexion work or bridal prep."
-        },
-        "lymphaticDrainage": {
-            "label": "Lymphatic drainage",
-            "title": "Lymphatic drainage",
-            "description": "Gentle drainage massage to minimise puffiness, refresh sluggish areas, and leave the face rested — ideal ahead of shoots, trials, or long travel."
         }
     },
 
@@ -98,7 +98,7 @@
         "AboutMeSection": {
             "eyebrow": "The artist",
             "title": "About",
-            "bio1": "Professional makeup artist with more than X years of experience specializing in bridal and social makeup in Valencia. Trained in the latest techniques, with a strong focus on longevity and skin care.",
+            "bio1": "Professional makeup artist with more than 10 years of experience specializing in bridal and social makeup in Valencia. Trained in the latest techniques, with a strong focus on longevity and skin care.",
             "bio2": "My philosophy: every face is unique, every glance matters. I love creating looks that enhance your natural beauty and help you feel like yourself on the moments that matter most."
         },
         "TestimonialsSection": {
@@ -160,6 +160,11 @@
     },
 
     "GenericMessages": {
-        "EMAIL_SENT_SUCCESSFULLY": "Email sent successfully"
+        "EMAIL_SENT_SUCCESSFULLY": "Email sent successfully",
+        "CALENDAR_NOT_CONFIGURED": "Calendar is not configured.",
+        "TIME_SLOT_ALREADY_PASSED": "This time slot has already passed.",
+        "SLOT_NO_LONGER_AVAILABLE": "This slot is no longer available. Please choose another time.",
+        "RESERVATION_NOT_CONFIRMED": "Could not confirm your reservation. Please try again later.",
+        "RESERVATION_CONFIRMED": "Your reservation is confirmed."
     }
 }

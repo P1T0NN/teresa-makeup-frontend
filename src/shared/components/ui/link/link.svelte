@@ -17,7 +17,7 @@
 		Omit<HTMLAnchorAttributes, 'href'> & {
 			href: string;
 			/** Override target locale; defaults to current locale from the URL. */
-			locale?: 'en' | 'de' | 'es';
+			locale?: 'en' | 'es';
 			children: Snippet;
 		}
 	>;

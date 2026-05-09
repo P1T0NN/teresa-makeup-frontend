@@ -24,6 +24,11 @@
 			"title": "Prueba de novia",
 			"description": "Una previsualización personalizada de tu maquillaje del día de la boda, con preparación de piel diseñada para durar desde el primer encuentro hasta el último baile — incluye orientación de color, tiempos y un plan claro hasta la ceremonia."
 		},
+		"bridalMakeup": {
+			"label": "Maquillaje de novia",
+			"title": "Maquillaje de novia",
+			"description": "Tu look del día de la boda de principio a fin — preparación de piel de larga duración, maquillaje refinado y tiempos sin prisa para que llegues a la ceremonia sintiéndote tú misma, puntual y lista para cada fotografía."
+		},
 		"socialMakeup": {
 			"label": "Maquillaje social",
 			"title": "Maquillaje social",
@@ -38,13 +43,8 @@
 			"label": "Maderoterapia",
 			"title": "Maderoterapia",
 			"description": "Movimientos de escultura con madera para suavizar la tensión y favorecer un contorno más firme en rostro o cuerpo — un preludio relajante al trabajo de tez o a la preparación nupcial."
-		},
-		"lymphaticDrainage": {
-			"label": "Drenaje linfático",
-			"title": "Drenaje linfático",
-			"description": "Masaje de drenaje suave para minimizar la hinchazón, refrescar zonas apagadas y dejar el rostro descansado — ideal antes de sesiones, pruebas o viajes largos."
 		}
-	},	
+	},
 
 	"CompanyData": {
 		"description": "Maquilladora profesional especializada en maquillaje de novia y social en Valencia.",
@@ -160,6 +160,11 @@
 	},
 
 	"GenericMessages": {
-		"EMAIL_SENT_SUCCESSFULLY": "Correo enviado correctamente"
+		"EMAIL_SENT_SUCCESSFULLY": "Correo enviado correctamente",
+		"CALENDAR_NOT_CONFIGURED": "El calendario no está configurado.",
+		"TIME_SLOT_ALREADY_PASSED": "Este horario ya ha pasado.",
+		"SLOT_NO_LONGER_AVAILABLE": "Este horario ya no está disponible. Por favor, elige otra hora.",
+		"RESERVATION_NOT_CONFIRMED": "No se pudo confirmar tu reserva. Por favor, inténtalo de nuevo más tarde.",
+		"RESERVATION_CONFIRMED": "Tu reserva está confirmada."
 	}
 }
