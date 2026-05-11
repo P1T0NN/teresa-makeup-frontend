@@ -2,9 +2,9 @@
 import { command } from '$app/server';
 import {
 	GOOGLE_CALENDAR_ID,
-	RESEND_API_KEY,
-	CALLMEBOT_PHONE,
-	CALLMEBOT_API_KEY
+	RESEND_API_KEY
+	// CALLMEBOT_PHONE,
+	// CALLMEBOT_API_KEY
 } from '$env/static/private';
 
 // LIBRARIES
@@ -31,7 +31,7 @@ import { createReservationInputSchema, type typesCreateReservationOutput } from 
 
 // TEMPLATES
 import { buildReservationEmail } from '@/features/booking/templates/reservationEmailTemplate';
-import { buildReservationWhatsappMessage } from '@/features/booking/templates/reservationWhatsappMessage';
+// import { buildReservationWhatsappMessage } from '@/features/booking/templates/reservationWhatsappMessage';
 
 // UTILS
 import { getServiceBookingDurationMs } from '@/features/booking/utils/serviceBookingDuration';
@@ -126,16 +126,16 @@ export const createReservation = command(
 			console.error('Reservation notification email failed', e);
 		}
 
-		try {
-			const text = buildReservationWhatsappMessage(payload, slotStart);
-			const url = `https://api.callmebot.com/whatsapp.php?phone=${encodeURIComponent(CALLMEBOT_PHONE)}&text=${encodeURIComponent(text)}&apikey=${encodeURIComponent(CALLMEBOT_API_KEY)}`;
-			const res = await fetch(url);
-			if (!res.ok) {
-				console.error('Reservation WhatsApp notification failed', res.status, await res.text());
-			}
-		} catch (e) {
-			console.error('Reservation WhatsApp notification failed', e);
-		}
+		// try {
+		// 	const text = buildReservationWhatsappMessage(payload, slotStart);
+		// 	const url = `https://api.callmebot.com/whatsapp.php?phone=${encodeURIComponent(CALLMEBOT_PHONE)}&text=${encodeURIComponent(text)}&apikey=${encodeURIComponent(CALLMEBOT_API_KEY)}`;
+		// 	const res = await fetch(url);
+		// 	if (!res.ok) {
+		// 		console.error('Reservation WhatsApp notification failed', res.status, await res.text());
+		// 	}
+		// } catch (e) {
+		// 	console.error('Reservation WhatsApp notification failed', e);
+		// }
 
 		await getAvailability().refresh();
 
