@@ -4,7 +4,7 @@
 	import { SvelteSet } from 'svelte/reactivity';
 
 	// LIBRARIES
-	import { CalendarDate, getLocalTimeZone, today } from '@internationalized/date';
+	import { CalendarDate, today } from '@internationalized/date';
 	import { m } from '@/shared/lib/paraglide/messages';
 
 	// CONFIG
@@ -48,12 +48,12 @@
 	const candidateSlots = $derived(getBookingStartTimeSlotsForService(service));
 	const appointmentDurationMs = $derived(getServiceBookingDurationMs(service));
 
-	const todayDate = today(getLocalTimeZone());
+	const todayDate = today(COMPANY_DATA.SALON_TIMEZONE);
 
 	/** Same-day and next-day bookings are not allowed — earliest selectable calendar day is the day after tomorrow */
 	const earliestBookingDate = todayDate.add({ days: 2 });
 
-	const tz = getLocalTimeZone();
+	const tz = COMPANY_DATA.SALON_TIMEZONE;
 
 	const busyIntervals: MsInterval[] = $derived(busyApiToMsIntervals(busy));
 
