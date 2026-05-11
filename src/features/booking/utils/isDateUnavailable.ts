@@ -1,3 +1,6 @@
+// LIBRARIES
+import { getDayOfWeek } from '@internationalized/date';
+
 // UTILS
 import { dateAtTimeMs } from '@/shared/utils/dateUtils';
 import { isOverlap, type MsInterval } from './isOverlap';
@@ -16,7 +19,9 @@ export function createIsDateUnavailable(
 	timeZone: string,
 	slotDurationMs: number
 ): (date: DateValue) => boolean {
-	const isSunday = (date: DateValue) => date.toDate(timeZone).getDay() === 0;
+	// Day-of-week is intrinsic to the calendar date — must NOT depend on the
+	// viewer's runtime timezone. en-US makes Sunday index 0.
+	const isSunday = (date: DateValue) => getDayOfWeek(date, 'en-US') === 0;
 
 	if (intervals.length === 0) {
 		return (date: DateValue) => isSunday(date);
