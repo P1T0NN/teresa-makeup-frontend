@@ -20,7 +20,7 @@
 
 	const bookingStatusText = $derived(
 		bookingSectionClass.bookingInputs.bookingDate && bookingSectionClass.bookingInputs.bookingTime
-			? `${m['RootPage.BookingSection.yourMeetingIsBookedFor']()} ${formatBookingStatusDate(
+			? `${formatBookingStatusDate(
 					bookingSectionClass.bookingInputs.bookingDate
 				)} ${m['RootPage.BookingSection.at']()} ${bookingSectionClass.bookingInputs.bookingTime}.`
 			: m['RootPage.BookingSection.youHaveNotChosenTheBookingDateYet']()

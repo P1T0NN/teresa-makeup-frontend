@@ -7,7 +7,9 @@
       "Bash(grep -rn \">[A-Z][a-zA-Z ]\\\\{3,\\\\}<\\\\|aria-label=\\\\\"[A-Z]\\\\|placeholder=\\\\\"[A-Z]\\\\|title=\\\\\"[A-Z]\" src --include=\"*.svelte\")",
       "Bash(python3 *)",
       "Bash(ls vercel.json)",
-      "Bash(cat vercel.json)"
+      "Bash(cat vercel.json)",
+      "Bash(find src *)",
+      "Bash(grep -rn \"export const prerender\\\\|export const ssr\\\\|export const csr\\\\|export const config\" src/)"
     ]
   }
 }

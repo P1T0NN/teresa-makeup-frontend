@@ -116,7 +116,6 @@
 			"selectService": "Selecciona el servicio",
 			"chooseOneOption": "Elige una opción",
 			"serviceSelection": "Selección de servicio",
-			"yourMeetingIsBookedFor": "Tu cita está reservada para",
 			"at": "a las",
 			"youHaveNotChosenTheBookingDateYet": "Aún no has elegido la fecha de la reserva",
 			"yourDetails": "Tus datos",
@@ -152,7 +151,7 @@
 	"ReservationConfirmationPage": {
 		"reservationConfirmed": "Reserva confirmada",
 		"youAreAllSet": "Todo listo.",
-		"teresaWillBeInTouch": "Teresa se pondrá en contacto contigo en breve con la confirmación. Mientras tanto — relájate, estás en buenas manos.",
+		"teresaWillBeInTouch": "En cuanto Teresa esté disponible, se pondrá en contacto contigo para confirmar todos los detalles.",
 		"backToSite": "Volver al sitio",
 		"messageTeresa": "Escribir a Teresa",
 		"whileYouWait": "mientras esperas",

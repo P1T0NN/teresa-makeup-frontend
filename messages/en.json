@@ -111,12 +111,11 @@
             "messageNow": "Message now"
         },
         "BookingSection": {
-            "bookYourAppointment": "Book your appointment",
+            "bookYourAppointment": "Request your appointment",
             "chooseYourServiceDateAndPreferredTime": "Choose your service, date, and preferred time.",
             "selectService": "Select service",
             "chooseOneOption": "Choose one option",
             "serviceSelection": "Service selection",
-            "yourMeetingIsBookedFor": "Your meeting is booked for",
             "at": "at",
             "youHaveNotChosenTheBookingDateYet": "You have not chosen the booking date yet",
             "yourDetails": "Your details",
@@ -152,7 +151,7 @@
     "ReservationConfirmationPage": {
         "reservationConfirmed": "Reservation confirmed",
         "youAreAllSet": "You're all set.",
-        "teresaWillBeInTouch": "Teresa will be in touch shortly with a confirmation. In the meantime — relax, you're in good hands.",
+        "teresaWillBeInTouch": "As soon as Teresa is available, she'll get in touch to confirm all the details.",
         "backToSite": "Back to site",
         "messageTeresa": "Message Teresa",
         "whileYouWait": "while you wait",
