@@ -176,9 +176,11 @@
 	}
 
 	.booking-calendar :global([data-bits-day][data-unavailable]) {
-		background-color: var(--color-red-100);
-		color: var(--color-red-800);
-		text-decoration: line-through;
+		background-color: transparent;
+		color: var(--color-muted-foreground);
+		text-decoration: none;
+		opacity: 0.5;
+		pointer-events: none;
 	}
 
 	.booking-calendar :global([data-bits-day][data-selected]) {

@@ -22,7 +22,7 @@
 		// Disabled
 		"data-disabled:text-muted-foreground data-disabled:pointer-events-none data-disabled:opacity-50",
 		// Unavailable
-		"data-unavailable:text-muted-foreground data-unavailable:line-through",
+		"data-unavailable:text-muted-foreground data-unavailable:pointer-events-none data-unavailable:opacity-50",
 		// focus
 		"focus:border-ring focus:ring-ring/50 focus:relative",
 		// inner spans
