@@ -4,7 +4,6 @@ import { command } from '$app/server';
 
 // LIBRARIES
 import { Resend } from 'resend';
-import { checkBotId } from 'botid/server';
 import { m } from '@/shared/lib/paraglide/messages';
 
 // CONFIG
@@ -21,16 +20,6 @@ const resend = new Resend(RESEND_API_KEY);
 export const sendContactFormEmail = command(
     sendContactFormEmailSchema,
     async (data) => {
-		const verification = await checkBotId();
-
-		if (verification.isBot) {
-			return {
-				success: false,
-				message: 'Access restricted',
-				data: null
-			};
-		}
-
 		const { subject, html, text, replyTo } = buildContactFormEmail(data);
 
 		const { error } = await resend.emails.send({
