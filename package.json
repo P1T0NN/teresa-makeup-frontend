@@ -50,7 +50,6 @@
 	},
 	"dependencies": {
 		"@sveltejs/adapter-vercel": "^6.3.3",
-		"botid": "^1.5.11",
 		"googleapis": "^171.4.0",
 		"resend": "^6.12.2",
 		"valibot": "^1.2.0"
