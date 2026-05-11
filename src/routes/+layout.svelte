@@ -3,11 +3,11 @@
 	import favicon from '@/shared/lib/assets/favicon.svg';
 
 	// SVELTEKIT IMPORTS
-	import { dev } from '$app/environment';
+	//import { dev } from '$app/environment';
 
 	// LIBRARIES
-	import { injectAnalytics } from '@vercel/analytics/sveltekit';
-	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
+	//import { injectAnalytics } from '@vercel/analytics/sveltekit';
+	//import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 
 	// COMPONENTS
 	import { Toaster } from '@/shared/components/ui/sonner';
@@ -16,8 +16,8 @@
 
 	let { children } = $props();
 
-	injectAnalytics({ mode: dev ? 'development' : 'production' });
-	injectSpeedInsights();
+	//injectAnalytics({ mode: dev ? 'development' : 'production' });
+	//injectSpeedInsights();
 </script>
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
