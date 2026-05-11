@@ -3,9 +3,6 @@
 	import favicon from '@/shared/lib/assets/favicon.svg';
 
 	// SVELTEKIT IMPORTS
-	import { beforeNavigate } from '$app/navigation';
-	import { updated } from '$app/state';
-	import { onMount } from 'svelte';
 	import { dev } from '$app/environment';
 
 	// LIBRARIES
@@ -21,21 +18,6 @@
 
 	injectAnalytics({ mode: dev ? 'development' : 'production' });
 	injectSpeedInsights();
-
-	// If a navigation happens after a new version is deployed, force a full reload
-	beforeNavigate(({ willUnload, to }) => {
-		if (updated.current && !willUnload && to?.url) {
-			location.href = to.url.href;
-		}
-	});
-
-	// Catch any chunk that fails to load and recover by reloading
-	onMount(() => {
-		window.addEventListener('vite:preloadError', (event) => {
-			event.preventDefault();
-			window.location.reload();
-		});
-	});
 </script>
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>

@@ -1,11 +1,14 @@
 <script lang="ts">
 	// SVELTEKIT IMPORTS
 	import { goto } from '$app/navigation';
-	import { resolve } from '$app/paths';
 
 	// LIBRARIES
 	import { safeParse } from 'valibot';
 	import { m } from '@/shared/lib/paraglide/messages';
+	import { localizeHref } from '@/shared/lib/paraglide/runtime.js';
+
+	// CONFIG
+	import { UNPROTECTED_PAGE_ENDPOINTS } from '@/shared/constants';
 
 	// CLASSES
 	import { bookingSectionClass } from './bookingSection.svelte.ts';
@@ -63,7 +66,7 @@
 
 		bookingSectionClass.clearInputs();
 
-		await goto(resolve('/(unprotected)/reservation-confirmation'));
+		await goto(localizeHref(UNPROTECTED_PAGE_ENDPOINTS.RESERVATION_CONFIRMATION));
 	}
 </script>
 
