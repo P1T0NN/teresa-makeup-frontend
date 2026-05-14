@@ -5,7 +5,6 @@
 	// COMPONENTS
 	import HeroSection from '@/shared/components/pages/(unprotected)/root/hero-section.svelte';
 	import ServicesSection from '@/shared/components/pages/(unprotected)/root/services-section.svelte';
-	import BookingSection from '@/shared/components/pages/(unprotected)/root/booking-section/booking-section.svelte';
 	import TestimonialsSection from '@/shared/components/pages/(unprotected)/root/testimonials-section/testimonials-section.svelte';
 	import PortfolioSection from '@/shared/components/pages/(unprotected)/root/portfolio-section.svelte';
 	import WhatsAppFab from '@/shared/components/pages/(unprotected)/root/whatsapp-fab.svelte';
@@ -22,12 +21,12 @@
 </svelte:head>
 
 <HeroSection />
-<BookingSection />
+<ContactSection />
+<!--<BookingSection />-->
 <ServicesSection />
 <TestimonialsSection />
 <PortfolioSection />
 <AboutMeSection />
-<ContactSection />
 
 <!-- WhatsApp floating button — mobile only -->
 <WhatsAppFab />
