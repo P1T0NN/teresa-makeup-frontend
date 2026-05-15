@@ -1,22 +1,16 @@
 <script lang="ts">
 	// SVELTEKIT
-	import { afterNavigate } from '$app/navigation';
 	import { page } from '$app/state';
 
 	// CONFIG
 	import { COMPANY_DATA, UNPROTECTED_PAGE_ENDPOINTS } from '@/shared/constants.js';
 
 	// LIBRARIES
-	import { deLocalizeUrl } from '@/shared/lib/paraglide/runtime';
+	import { deLocalizeUrl, localizeHref } from '@/shared/lib/paraglide/runtime';
 	import { m } from '@/shared/lib/paraglide/messages';
 
 	// CLASSES
-	import {
-		normalHeader,
-		navItems,
-		navLinkActiveClass,
-		navLinkClass
-	} from './header.svelte.ts';
+	import { normalHeader, navItems, navLinkActiveClass, navLinkClass } from './header.svelte.ts';
 
 	// COMPONENTS
 	import { buttonVariants } from '@/shared/components/ui/button/button.svelte';
@@ -40,26 +34,8 @@
 
 	const pathnameLogical = $derived(new URL(deLocalizeUrl(page.url.href)).pathname);
 
-	afterNavigate(() => {
+	const handleCloseDrawer = () => {
 		normalHeader.closeMenu();
-	});
-
-	function handleNavClick(event: MouseEvent, href: string) {
-		const hashIndex = href.indexOf('#');
-		if (hashIndex === -1) {
-			normalHeader.closeMenu();
-			return;
-		}
-
-		event.preventDefault();
-		normalHeader.closeMenu();
-
-		const id = href.slice(hashIndex + 1);
-		const el = document.getElementById(id);
-		if (el) {
-			el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-			history.replaceState(null, '', `#${id}`);
-		}
 	}
 </script>
 
@@ -67,14 +43,6 @@
 	bind:open={normalHeader.menuOpen}
 	direction="right"
 	modal={false}
-	shouldScaleBackground={false}
-	onOpenChange={(open) => {
-		if (open) {
-			requestAnimationFrame(() => {
-				document.getElementById('site-mobile-nav-first')?.focus();
-			});
-		}
-	}}
 >
 	<DrawerTrigger>
 		{#snippet child({ props })}
@@ -83,7 +51,7 @@
 				type="button"
 				class={cn(
 					buttonVariants({ variant: 'ghost', size: 'icon' }),
-					'lg:hidden touch-manipulation',
+					'touch-manipulation lg:hidden',
 					props.class as ClassValue
 				)}
 				aria-controls="site-mobile-nav"
@@ -101,7 +69,7 @@
 	<DrawerContent
 		id="site-mobile-nav"
 		aria-describedby={undefined}
-		class="flex h-full max-h-dvh w-full max-w-80 flex-col gap-4 overflow-y-auto overflow-x-hidden border-border bg-background p-4 shadow-lg! data-[vaul-drawer-direction=right]:w-full sm:max-w-80"
+		class="flex h-full max-h-dvh w-full max-w-80 flex-col gap-4 overflow-x-hidden overflow-y-auto border-border bg-background p-4 shadow-lg! data-[vaul-drawer-direction=right]:w-full sm:max-w-80"
 	>
 		<div class="flex min-w-0 items-center justify-between gap-2">
 			<div class="min-w-0">
@@ -128,14 +96,14 @@
 		<nav aria-label={m['Header.mobileMainMenu']()}>
 			<ul class="flex flex-col gap-1">
 				{#each navItems as item, i (item.href)}
-					{@const active = isNavItemActive(pathnameLogical, item.href)}
+					{@const active = isNavItemActive(pathnameLogical, localizeHref(item.href))}
 					<li>
 						<Link
 							id={i === 0 ? 'site-mobile-nav-first' : undefined}
-							href={item.href}
+							href={localizeHref(item.href)}
 							class={cn(navLinkClass, 'block w-full', active && navLinkActiveClass)}
+							onclick={handleCloseDrawer}
 							aria-current={active ? 'page' : undefined}
-							onclick={(e) => handleNavClick(e, item.href)}
 						>
 							{item.label}
 						</Link>
@@ -146,10 +114,10 @@
 
 		<div class="mt-auto flex flex-col gap-3">
 			<Button
-				href={UNPROTECTED_PAGE_ENDPOINTS.BOOKING}
+				href={localizeHref(UNPROTECTED_PAGE_ENDPOINTS.CONTACT)}
 				variant="default"
 				class="w-full bg-primary text-primary-foreground hover:bg-primary/90"
-				onclick={(e: MouseEvent) => handleNavClick(e, UNPROTECTED_PAGE_ENDPOINTS.BOOKING)}
+				onclick={handleCloseDrawer}
 			>
 				{m['Header.bookAppointment']()}
 			</Button>

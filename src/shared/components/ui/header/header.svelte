@@ -10,11 +10,7 @@
 	import { m } from '@/shared/lib/paraglide/messages';
 
 	// CLASSES
-	import {
-		navItems,
-		navLinkActiveClass,
-		navLinkClass
-	} from './header.svelte.ts';
+	import { navItems, navLinkActiveClass, navLinkClass } from './header.svelte.ts';
 
 	// COMPONENTS
 	import Button from '@/shared/components/ui/button/button.svelte';
@@ -75,23 +71,24 @@
 		className
 	)}
 >
-	<div
-		class="mx-auto flex h-16 w-full max-w-7xl items-center gap-2 px-4 sm:gap-3 sm:px-6 lg:px-8"
-	>
+	<div class="mx-auto flex h-16 w-full max-w-7xl items-center gap-2 px-4 sm:gap-3 sm:px-6 lg:px-8">
 		<div class="flex min-w-0 shrink items-center gap-2 lg:shrink-0">
 			{#if hasLogo}
 				<Logo href={UNPROTECTED_PAGE_ENDPOINTS.ROOT} />
 			{:else}
 				<Link
 					href={UNPROTECTED_PAGE_ENDPOINTS.ROOT}
-					class="text-foreground truncate text-sm font-semibold tracking-tight sm:text-base"
+					class="truncate text-sm font-semibold tracking-tight text-foreground sm:text-base"
 				>
 					{COMPANY_DATA.NAME}
 				</Link>
 			{/if}
 		</div>
 
-		<nav class="hidden min-w-0 flex-1 justify-center lg:flex" aria-label={m['Header.mainNavigation']()}>
+		<nav
+			class="hidden min-w-0 flex-1 justify-center lg:flex"
+			aria-label={m['Header.mainNavigation']()}
+		>
 			<ul class="flex max-w-full min-w-0 flex-wrap items-center justify-center gap-1">
 				{#each navItems as item (item.href)}
 					{@const active = isNavItemActive(pathnameLogical, item.href)}
@@ -111,7 +108,7 @@
 		<div class="ml-auto flex shrink-0 items-center justify-end gap-2 lg:ml-0">
 			<LanguageSelector />
 			<Button
-				href={UNPROTECTED_PAGE_ENDPOINTS.BOOKING}
+				href={UNPROTECTED_PAGE_ENDPOINTS.CONTACT}
 				variant="default"
 				size="lg"
 				class="hidden bg-primary text-primary-foreground hover:bg-primary/90 lg:inline-flex"
