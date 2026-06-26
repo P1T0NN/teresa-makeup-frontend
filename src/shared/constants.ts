@@ -3,7 +3,7 @@ import { m } from "./lib/paraglide/messages";
 
 export const COMPANY_DATA = {
 	NAME: 'Teresa Guzmán Makeup',
-	LOGO: '/logo/logo.webp',
+	LOGO: '/logo/opt/logo-transparent-128w.webp',
 	DESCRIPTION: m['CompanyData.description'](),
 	EMAIL: ' teresaguzmanmakeup@gmail.com',
 	EMAIL_HREF: 'mailto:teresaguzmanmakeup@gmail.com',

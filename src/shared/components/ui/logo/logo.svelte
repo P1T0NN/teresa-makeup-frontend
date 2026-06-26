@@ -6,14 +6,14 @@
 
 	type Props = {
 		class?: string;
-		/** Passed through to `<img>` (e.g. brightness on dark heroes). Ignored when `isText`. */
+		/** Passed through to `<img>` (e.g. brightness on dark heroes). */
 		imgClass?: string;
 		href?: string;
 		alt?: string;
 		/** Visual size in the header / drawer. */
 		size?: 'sm' | 'md';
-		/** Show brand wordmark text instead of the image logo. Defaults to `true` for this project. */
-		isText?: boolean;
+		/** `both` = monogram + wordmark (default). */
+		variant?: 'text' | 'image' | 'both';
 	} & Omit<HTMLAnchorAttributes, 'href' | 'class' | 'children'>;
 
 	let {
@@ -22,43 +22,45 @@
 		href = UNPROTECTED_PAGE_ENDPOINTS.ROOT,
 		alt = `${COMPANY_DATA.NAME} logo`,
 		size = 'md',
-		isText = true,
+		variant = 'both',
 		...restProps
 	}: Props = $props();
 
-	const sizeStyles = $derived(
-		size === 'sm'
-			? 'h-7 max-h-7 w-auto max-w-[min(9rem,40vw)]'
-			: 'h-8 max-h-9 w-auto max-w-[min(10rem,45vw)]'
-	);
+	const imgSizeStyles = $derived(size === 'sm' ? 'h-7 w-auto' : 'h-9 w-auto');
 
 	const textSizeStyles = $derived(
-		size === 'sm' ? 'max-w-[min(12rem,55vw)] text-sm font-semibold' : 'max-w-[min(13rem,60vw)] text-base font-semibold sm:text-lg'
+		size === 'sm'
+			? 'max-w-[min(12rem,55vw)] text-sm font-semibold'
+			: 'max-w-[min(13rem,60vw)] text-base font-semibold sm:text-lg'
 	);
+
+	const showImage = $derived(variant === 'image' || variant === 'both');
+	const showText = $derived(variant === 'text' || variant === 'both');
 </script>
 
 <Link
 	href={href}
 	class={cn(
-		'inline-flex min-w-0 shrink-0 items-center outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 rounded-sm',
+		'inline-flex min-w-0 shrink-0 items-center gap-2 outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 rounded-sm',
 		className
 	)}
 	{...restProps}
 >
-	{#if isText}
-		<span class={cn('truncate font-serif italic leading-tight text-inherit', textSizeStyles)}>
-			{COMPANY_DATA.NAME}
-		</span>
-	{:else}
+	{#if showImage}
 		<img
 			src={COMPANY_DATA.LOGO}
 			{alt}
-			class={cn('object-contain object-left', sizeStyles, imgClass)}
-			width="160"
+			class={cn('shrink-0 object-contain object-left', imgSizeStyles, imgClass)}
+			width="36"
 			height="36"
 			loading="eager"
 			decoding="async"
 			draggable="false"
 		/>
+	{/if}
+	{#if showText}
+		<span class={cn('truncate font-serif italic leading-tight text-inherit', textSizeStyles)}>
+			{COMPANY_DATA.NAME}
+		</span>
 	{/if}
 </Link>

@@ -5,6 +5,7 @@
  * Source files: .png / .jpg / .jpeg in each target folder (not existing -{N}w.webp outputs).
  * Output:
  *   static/root/, static/root/about-me/, static/root/portfolio/ → same folder (URLs like /root/…)
+ *   static/logo/                                              → opt/ (+ logo.webp primary)
  *   static/root/testimonials/, static/testimonials/             → <dir>/opt/
  *
  * Run: bun run optimize-images
@@ -19,16 +20,17 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = join(__dirname, '..');
 const STATIC = join(PROJECT_ROOT, 'static');
 
-/** @type {{ path: string; inPlace: boolean }[]} */
+/** @type {{ path: string; inPlace: boolean; sizes?: number[]; primaryWebp?: boolean }[]} */
 const INPUT_DIRS = [
 	{ path: join(STATIC, 'root'), inPlace: true },
 	{ path: join(STATIC, 'root', 'about-me'), inPlace: true },
 	{ path: join(STATIC, 'root', 'portfolio'), inPlace: true },
+	{ path: join(STATIC, 'logo'), inPlace: false, sizes: [64, 96, 128], primaryWebp: true },
 	{ path: join(STATIC, 'root', 'testimonials'), inPlace: false },
 	{ path: join(STATIC, 'testimonials'), inPlace: false },
 ];
 
-const GRID_SIZES = [640, 960, 1280];
+const DEFAULT_SIZES = [640, 960, 1280];
 const SOURCE_EXT = /\.(png|jpe?g)$/i;
 
 async function ensureDir(p) {
@@ -42,23 +44,34 @@ function isSourceImage(file) {
 /**
  * @param {string} inputDir
  * @param {string} file
- * @param {boolean} inPlace
+ * @param {{ inPlace: boolean; sizes?: number[]; primaryWebp?: boolean }} options
  */
-async function optimizeImage(inputDir, file, inPlace) {
+async function optimizeImage(inputDir, file, { inPlace, sizes, primaryWebp }) {
 	const src = join(inputDir, file);
 	if (!existsSync(src)) return;
 
 	const baseName = file.replace(SOURCE_EXT, '');
 	const outDir = inPlace ? inputDir : join(inputDir, 'opt');
+	const widths = sizes ?? DEFAULT_SIZES;
 	await ensureDir(outDir);
 
-	for (const w of GRID_SIZES) {
+	for (const w of widths) {
 		await sharp(src)
 			.trim()
 			.resize(w)
 			.webp({ quality: 75 })
 			.toFile(join(outDir, `${baseName}-${w}w.webp`));
 	}
+
+	if (primaryWebp) {
+		const maxW = Math.max(...widths);
+		await sharp(src)
+			.trim()
+			.resize(maxW)
+			.webp({ quality: 75 })
+			.toFile(join(inputDir, `${baseName}.webp`));
+	}
+
 	console.log(`  ✓ ${file}`);
 }
 
@@ -71,6 +84,7 @@ async function main() {
 					'   static/root/\n' +
 					'   static/root/about-me/\n' +
 					'   static/root/portfolio/\n' +
+					'   static/logo/\n' +
 					'   static/root/testimonials/\n' +
 					'   static/testimonials/\n' +
 					'then add .png / .jpg / .jpeg source files.'
@@ -80,7 +94,7 @@ async function main() {
 		}
 
 		let total = 0;
-		for (const { path: inputDir, inPlace } of INPUT_DIRS) {
+		for (const { path: inputDir, inPlace, sizes, primaryWebp } of INPUT_DIRS) {
 			const label = relative(PROJECT_ROOT, inputDir);
 
 			if (!existsSync(inputDir)) {
@@ -99,10 +113,14 @@ async function main() {
 			const outLabel = inPlace ? label : `${label}/opt`;
 			console.log(`Optimizing ${label}/ …\n`);
 			for (const file of images) {
-				await optimizeImage(inputDir, file, inPlace);
+				await optimizeImage(inputDir, file, { inPlace, sizes, primaryWebp });
 				total += 1;
 			}
-			console.log(`→ WebPs in ${outLabel}/\n`);
+			if (primaryWebp) {
+				console.log(`→ WebPs in ${outLabel}/ (+ primary .webp in ${label}/)\n`);
+			} else {
+				console.log(`→ WebPs in ${outLabel}/\n`);
+			}
 		}
 
 		if (total === 0) {

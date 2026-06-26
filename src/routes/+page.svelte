@@ -3,6 +3,7 @@
 	import { m } from '@/shared/lib/paraglide/messages';
 	
 	// COMPONENTS
+	import SvelteHead from '@/shared/components/ui/svelte-head/svelte-head.svelte';
 	import HeroSection from '@/shared/components/pages/(unprotected)/root/hero-section.svelte';
 	import ServicesSection from '@/shared/components/pages/(unprotected)/root/services-section.svelte';
 	import TestimonialsSection from '@/shared/components/pages/(unprotected)/root/testimonials-section/testimonials-section.svelte';
@@ -12,13 +13,11 @@
 	import ContactSection from '@/shared/components/pages/(unprotected)/root/contact-section/contact-section.svelte';
 </script>
 
-<svelte:head>
-	<title>{m['SEO.RootPage.title']()}</title>
-	<meta
-		name="description"
-		content={m['SEO.RootPage.description']()}
-	/>
-</svelte:head>
+<SvelteHead
+	title={m['SEO.RootPage.title']()}
+	description={m['SEO.RootPage.description']()}
+	image="/root/hero-image-1280w.webp"
+/>
 
 <HeroSection />
 <ContactSection />
