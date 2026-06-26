@@ -10,7 +10,7 @@
 	<div class="grid grid-cols-1 items-start gap-10 lg:grid-cols-2 lg:gap-16">
 		<div class="mx-auto aspect-square w-full max-w-md overflow-hidden rounded-2xl lg:mx-0">
 			<img
-				src="/root/about-me/tereza-picture-1280w.webp"
+				src="/root/about-me/about-me-1280w.webp"
 				alt="Teresa Guzmán, professional makeup artist in Valencia"
 				class="h-full w-full object-cover"
 				loading="lazy"

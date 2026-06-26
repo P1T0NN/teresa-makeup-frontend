@@ -1,11 +1,13 @@
 #!/usr/bin/env node
 /**
- * Optimizes images under static and writes responsive WebPs to <dir>/opt/.
- * Targets:
- *   static/root/              → URLs like /root/hero.webp
- *   static/root/testimonials/ → /root/testimonials/…
- *   static/testimonials/      → /testimonials/…
- * Run: node scripts/optimize-images.mjs
+ * Optimizes source images under static/ and writes responsive WebPs.
+ *
+ * Source files: .png / .jpg / .jpeg in each target folder (not existing -{N}w.webp outputs).
+ * Output:
+ *   static/root/, static/root/about-me/, static/root/portfolio/ → same folder (URLs like /root/…)
+ *   static/root/testimonials/, static/testimonials/             → <dir>/opt/
+ *
+ * Run: bun run optimize-images
  */
 import sharp from 'sharp';
 import { mkdir, readdir } from 'fs/promises';
@@ -17,26 +19,37 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = join(__dirname, '..');
 const STATIC = join(PROJECT_ROOT, 'static');
 
-/** Matches /root/*, /root/testimonials/*, and /testimonials/* static URLs */
+/** @type {{ path: string; inPlace: boolean }[]} */
 const INPUT_DIRS = [
-	join(STATIC, 'root'),
-	join(STATIC, 'root', 'testimonials'),
-	join(STATIC, 'testimonials'),
+	{ path: join(STATIC, 'root'), inPlace: true },
+	{ path: join(STATIC, 'root', 'about-me'), inPlace: true },
+	{ path: join(STATIC, 'root', 'portfolio'), inPlace: true },
+	{ path: join(STATIC, 'root', 'testimonials'), inPlace: false },
+	{ path: join(STATIC, 'testimonials'), inPlace: false },
 ];
 
 const GRID_SIZES = [640, 960, 1280];
-const IMAGE_EXT = /\.(png|jpg|jpeg|webp)$/i;
+const SOURCE_EXT = /\.(png|jpe?g)$/i;
 
 async function ensureDir(p) {
 	await mkdir(p, { recursive: true });
 }
 
-async function optimizeImage(inputDir, file) {
+function isSourceImage(file) {
+	return SOURCE_EXT.test(file) && !file.startsWith('.');
+}
+
+/**
+ * @param {string} inputDir
+ * @param {string} file
+ * @param {boolean} inPlace
+ */
+async function optimizeImage(inputDir, file, inPlace) {
 	const src = join(inputDir, file);
 	if (!existsSync(src)) return;
 
-	const baseName = file.replace(IMAGE_EXT, '');
-	const outDir = join(inputDir, 'opt');
+	const baseName = file.replace(SOURCE_EXT, '');
+	const outDir = inPlace ? inputDir : join(inputDir, 'opt');
 	await ensureDir(outDir);
 
 	for (const w of GRID_SIZES) {
@@ -51,21 +64,23 @@ async function optimizeImage(inputDir, file) {
 
 async function main() {
 	try {
-		const anyDirExists = INPUT_DIRS.some((d) => existsSync(d));
+		const anyDirExists = INPUT_DIRS.some(({ path }) => existsSync(path));
 		if (!anyDirExists) {
 			console.warn(
 				'⊘ No image folders found. Create any you need:\n' +
-					'   static/root/                (site images: /root/…)\n' +
+					'   static/root/\n' +
+					'   static/root/about-me/\n' +
+					'   static/root/portfolio/\n' +
 					'   static/root/testimonials/\n' +
 					'   static/testimonials/\n' +
-					'then add .png / .jpg / .jpeg / .webp files (not inside opt/).'
+					'then add .png / .jpg / .jpeg source files.'
 			);
 			process.exit(0);
 			return;
 		}
 
 		let total = 0;
-		for (const inputDir of INPUT_DIRS) {
+		for (const { path: inputDir, inPlace } of INPUT_DIRS) {
 			const label = relative(PROJECT_ROOT, inputDir);
 
 			if (!existsSync(inputDir)) {
@@ -74,25 +89,24 @@ async function main() {
 			}
 
 			const files = await readdir(inputDir);
-			const images = files.filter((f) => IMAGE_EXT.test(f) && !f.startsWith('.'));
+			const images = files.filter(isSourceImage);
 
 			if (images.length === 0) {
-				console.log(`⊘ Skipped — no images in ${label}/\n`);
+				console.log(`⊘ Skipped — no source images in ${label}/\n`);
 				continue;
 			}
 
+			const outLabel = inPlace ? label : `${label}/opt`;
 			console.log(`Optimizing ${label}/ …\n`);
 			for (const file of images) {
-				await optimizeImage(inputDir, file);
+				await optimizeImage(inputDir, file, inPlace);
 				total += 1;
 			}
-			console.log(`→ WebPs in ${label}/opt/\n`);
+			console.log(`→ WebPs in ${outLabel}/\n`);
 		}
 
 		if (total === 0) {
-			console.warn(
-				'⊘ No images found in existing folders (only files matching *.png|jpg|jpeg|webp).'
-			);
+			console.warn('⊘ No source images found (.png / .jpg / .jpeg).');
 			process.exit(0);
 			return;
 		}
